@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <g>
+        <g data-name="Layer 2">
+            <circle cx="256" cy="256" r="256" fill="#33b859" opacity="1" data-original="#ff2147"></circle>
+            <path fill="#ffffff"
+                d="M384.9 159.33a37.9 37.9 0 0 0-53.61 0L218.35 272.26l-37.64-37.64a37.9 37.9 0 0 0-53.61 0 37.9 37.9 0 0 0 0 53.6l64.45 64.45a37.9 37.9 0 0 0 53.61 0L384.9 212.93a37.9 37.9 0 0 0 0-53.6z"
+                opacity="1" data-original="#ffffff"></path>
+        </g>
+    </g>
+</svg>

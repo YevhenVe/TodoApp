@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g>
+        <path fill="#69a1ff" d="M20 24H4c-2.2 0-4-1.8-4-4V4c0-2.2 1.8-4 4-4h16c2.2 0 4 1.8 4 4v16c0 2.2-1.8 4-4 4z"
+            opacity="1" data-original="#69a1ff" class=""></path>
+        <path fill="#b5d1ff" d="M24 4v16c0 2.2-1.8 4-4 4H3.8C1.7 23.9 0 22.1 0 20V4c0-2.2 1.8-4 4-4h16c2.2 0 4 1.8 4 4z"
+            opacity="1" data-original="#b5d1ff" class=""></path>
+        <path fill="#2979ff" d="M16.7 24H4c-2.2 0-4-1.8-4-4v-3.3l2.3-2.3c1.3-1.3 3.5-1.3 4.8 0z" opacity="1"
+            data-original="#2979ff" class=""></path>
+        <path fill="#69a1ff" d="M24 14.3V20c0 2.2-1.8 4-4 4H3.8l12.5-12.6c1.3-1.3 3.5-1.3 4.8 0z" opacity="1"
+            data-original="#69a1ff" class=""></path>
+        <path fill="#2979ff"
+            d="m14.6 7-1.1-1 1.1-1.1c.4-.4.4-1.1 0-1.5s-1.1-.4-1.5 0L12 4.5l-1.1-1.1c-.4-.4-1.1-.4-1.5 0s-.4 1.1 0 1.5L10.5 6 9.4 7c-.4.5-.4 1.1 0 1.6.4.4 1.1.4 1.5 0L12 7.5l1.1 1.1c.4.4 1.1.4 1.5 0 .4-.5.4-1.1 0-1.6z"
+            opacity="1" data-original="#2979ff" class=""></path>
+    </g>
+</svg>

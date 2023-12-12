@@ -1,0 +1,18 @@
+.app-wrapper {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center;
+    .app-account-wrapper {
+        margin-top: 50px;
+        display: flex;
+        height: calc(100vh - 131px);
+        justify-content: center;
+        align-items: center;
+    }
+}

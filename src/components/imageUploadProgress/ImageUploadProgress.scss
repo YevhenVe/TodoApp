@@ -1,0 +1,19 @@
+.image-upload-progress-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    border-radius: 25px;
+    background-color: rgba($color: #000, $alpha: 0.1);
+    backdrop-filter: blur(20px);
+    color: #454545;
+    box-shadow: 0 10px 30px rgba($color: #000000, $alpha: 0.5);
+    z-index: 1;
+    p {
+        padding: 30px 60px;
+    }
+}

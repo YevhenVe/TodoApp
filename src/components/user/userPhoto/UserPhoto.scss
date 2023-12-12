@@ -1,0 +1,23 @@
+.user-photo-wrapper {
+    display: flex;
+    height: 40px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-right: 20px;
+    cursor: pointer;
+    img {
+        border-radius: 50px;
+        margin-right: 5px;
+    }
+
+    .arrow-icon-style {
+        width: 20px;
+        background-image: url("../../../assets/arrow.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: rotate 300ms ease-in-out;
+        &.rotate {
+            rotate: 180deg;
+        }
+    }
+}

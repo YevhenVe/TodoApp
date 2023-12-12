@@ -1,0 +1,57 @@
+.records-wrapper {
+    .input-records {
+        width: 100%;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+        background: transparent;
+        margin-bottom: 25px;
+        font-size: 18px;
+        color: #fff;
+        &::placeholder {
+            color: rgba($color: #fff, $alpha: 0.5);
+        }
+    }
+    .records {
+        margin-bottom: 25px;
+        padding: 0 15px;
+        .button-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .record {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #fff;
+            border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+            .record-text {
+                margin-right: 10px;
+                overflow-x: auto;
+                text-align: left;
+            }
+            .remove-record-text,
+            .check-record-text {
+                background-color: transparent;
+                border-radius: 50px;
+                padding: 0;
+                margin-right: 0;
+                border: 0px;
+                .button-content-wrapper {
+                    .button-icon {
+                        margin-right: 0;
+                    }
+                }
+                &:last-child {
+                    margin-left: 10px;
+                }
+            }
+        }
+        .record-done {
+            text-decoration: line-through;
+            color: #00fd76;
+        }
+    }
+}
