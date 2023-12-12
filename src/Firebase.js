@@ -4,12 +4,12 @@ import { getDatabase } from "firebase/database";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDuTt32saeLMlbe8ECBxFGp_wJGtpxsUxo",
-    authDomain: "votingapp-29c2f.firebaseapp.com",
-    projectId: "votingapp-29c2f",
-    storageBucket: "votingapp-29c2f.appspot.com",
-    messagingSenderId: "533256827680",
-    appId: "1:533256827680:web:a8b1b8980364f8c7805d45",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_APPID,
 };
 
 // Firebase initialization

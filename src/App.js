@@ -3,6 +3,7 @@ import UserContext from "./context/UserContext";
 import BackgroundContext from "./context/BackgroundContext";
 import DdMenuContext from "./context/DdMenuContext";
 import Header from "./components/header/Header";
+import DefoultBackground from "./assets/bg.jpg";
 import Account from "./pages/account/Account";
 import ImageUploadProgresss from "./components/imageUploadProgress/ImageUploadProgress";
 import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
@@ -17,7 +18,7 @@ const App = () => {
         <div
             className="app-wrapper"
             style={{
-                backgroundImage: `url(${user ? (uploadedImage ? uploadedImage : "https://source.unsplash.com/random/1920x1080/?grey") : "https://source.unsplash.com/random/1920x1080/?grey"})`,
+                backgroundImage: `url(${user ? (uploadedImage ? uploadedImage : DefoultBackground) : DefoultBackground})`,
             }}
         >
             {user && <Header />}
