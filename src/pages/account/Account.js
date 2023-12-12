@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../../context/UserContext";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
+import Auth from "../../components/auth/Auth";
 import "./Account.scss";
 
 const Account = () => {
@@ -29,7 +30,10 @@ const Account = () => {
                         </div>
                     </>
                 ) : (
-                    <div className="wellcome-page">Hello unknown user, please Sign in with Google</div>
+                    <div className="wellcome-page">
+                        <div className="wellcome-text">Hello unknown user, please</div>
+                        <Auth />
+                    </div>
                 )}
             </>
         </div>

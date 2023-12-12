@@ -17,10 +17,10 @@ const App = () => {
         <div
             className="app-wrapper"
             style={{
-                backgroundImage: `url(${user ? (uploadedImage ? uploadedImage : "https://source.unsplash.com/random/900x700/?fruit") : "https://source.unsplash.com/random/900x700/?fruit"})`,
+                backgroundImage: `url(${user ? (uploadedImage ? uploadedImage : "https://source.unsplash.com/random/1920x1080/?grey") : "https://source.unsplash.com/random/1920x1080/?grey"})`,
             }}
         >
-            <Header />
+            {user && <Header />}
             <DropDownMenu className={openDdMenu ? "drop-down-menu-wrapper-show" : ""} />
             <ImageUploadProgresss />
             <div className="app-account-wrapper">

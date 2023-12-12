@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import DdMenuContext from "../../context/DdMenuContext";
-import Auth from "../auth/Auth";
 import UserPhoto from "../user/userPhoto/UserPhoto";
 import "./Header.scss";
 
@@ -16,7 +15,7 @@ const Header = () => {
                     <UserPhoto onClick={() => setOpenDdMenu(!openDdMenu)} />
                 </>
             ) : (
-                <Auth />
+                ""
             )}
         </div>
     );

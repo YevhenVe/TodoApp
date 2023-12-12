@@ -14,9 +14,13 @@
     border-radius: 15px;
     .account-content {
         overflow-y: auto;
+        width: 100%;
     }
     .wellcome-page {
-        font-size: 2em;
+        font-size: 1.6em;
+        .wellcome-text {
+            margin-bottom: 20px;
+        }
     }
     .fixed-account-content {
         .time {

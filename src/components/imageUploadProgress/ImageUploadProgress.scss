@@ -10,7 +10,8 @@
     border-radius: 25px;
     background-color: rgba($color: #000, $alpha: 0.1);
     backdrop-filter: blur(20px);
-    color: #454545;
+    color: #ffffff;
+    text-shadow: #000 1px 0 10px;
     box-shadow: 0 10px 30px rgba($color: #000000, $alpha: 0.5);
     z-index: 1;
     p {

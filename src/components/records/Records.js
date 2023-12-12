@@ -20,10 +20,17 @@ const Records = () => {
             onValue(userRecordsRef, (snapshot) => {
                 const recordsData = snapshot.val();
                 const recordsList = recordsData
-                    ? Object.keys(recordsData).map((key) => ({
-                          id: key,
-                          ...recordsData[key],
-                      }))
+                    ? Object.keys(recordsData)
+                          .map((key) => ({
+                              id: key,
+                              ...recordsData[key],
+                          }))
+                          .sort((a, b) => {
+                              if (a.checked === b.checked) {
+                                  return b.timestamp - a.timestamp; // Sort by timestamp if both checked or unchecked
+                              }
+                              return a.checked ? 1 : -1; // Move checked records to the bottom
+                          })
                     : [];
                 setRecords(recordsList);
             });
@@ -71,7 +78,9 @@ const Records = () => {
     //Set Record by clicking "Enter" button
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
-            addRecord();
+            if (input) {
+                addRecord();
+            } else return;
         }
     };
 

@@ -1,6 +1,6 @@
 .records-wrapper {
     .input-records {
-        width: 100%;
+        width: calc(100% - 35px);
         outline: none;
         border: none;
         border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
@@ -51,7 +51,7 @@
         }
         .record-done {
             text-decoration: line-through;
-            color: #00fd76;
+            color: rgba($color: #fff, $alpha: 0.3);
         }
     }
 }
