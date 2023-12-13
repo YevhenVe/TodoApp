@@ -29,7 +29,7 @@ const RemoveBg = () => {
                 <CustomButton
                     key={image.id}
                     onClick={() => deleteImage(image.id, image.url)}
-                    label="Delete Bg"
+                    label="Delete Background"
                     icon={<RemoveImageIcon />}
                 />
             ))}

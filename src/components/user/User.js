@@ -5,7 +5,7 @@ import "./User.scss";
 const User = () => {
     const { user } = useContext(UserContext);
     const userName = user?.displayName ? user.displayName.split(" ")[0] : "";
-
+    //
     useEffect(() => {
         // Check if the user is logged in and has a displayName
         if (user && user.displayName) {
@@ -17,7 +17,7 @@ const User = () => {
 
     return (
         <div className="user-wrapper">
-            <div>Hey, {userName}.</div>
+            <div className="welcome-name">Hey, {userName}.</div>
         </div>
     );
 };

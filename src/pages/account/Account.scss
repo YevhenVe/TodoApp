@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: center;
     max-height: 80vh;
-    min-width: 320px;
-    width: 450px;
+    min-width: 300px;
+    max-width: 600px;
     background-color: rgba($color: #000, $alpha: 0.1);
     backdrop-filter: blur(30px);
     border: 1px solid rgba($color: #000, $alpha: 0.1);
@@ -13,6 +13,10 @@
     padding: 30px;
     border-radius: 15px;
     margin: 0 20px;
+    overflow: hidden;
+    @media screen and (max-width: 767px) {
+        max-width: 90%;
+    }
     .account-content {
         overflow-y: auto;
         width: 100%;
@@ -25,7 +29,7 @@
     }
     .fixed-account-content {
         .time {
-            font-size: 5em;
+            font-size: calc(60px + 20 * (100vw - 320px) / 880);
             font-weight: 600;
             color: #fff;
             line-height: 1;
