@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 const DdMenuContext = createContext();
 
 export const DdMenuProvider = ({ children }) => {
-    const [openDdMenu, setOpenDdMenu] = useState("");
+    const [isMenuClosed, setIsMenuClosed] = useState(true);
 
-    return <DdMenuContext.Provider value={{ openDdMenu, setOpenDdMenu }}>{children}</DdMenuContext.Provider>;
+    return <DdMenuContext.Provider value={{ isMenuClosed, setIsMenuClosed }}>{children}</DdMenuContext.Provider>;
 };
 
 export default DdMenuContext;

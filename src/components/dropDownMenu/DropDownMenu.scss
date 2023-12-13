@@ -1,35 +1,41 @@
-.drop-down-menu-wrapper {
-    position: absolute;
+.menu-hidden {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
     top: 100px;
-    right: -100%;
-    width: 320px;
     background-color: rgba($color: #000000, $alpha: 0.05);
     border: 1px solid rgba($color: #000000, $alpha: 0.1);
     backdrop-filter: blur(30px);
     box-shadow: 0px 20px 30px rgba($color: #000000, $alpha: 0.3);
-    padding: 30px;
-    transition: right 300ms ease-in-out;
     z-index: 2;
-    .user-email,
-    .user-name {
-        color: #fff;
-    }
-    .user-name {
-        font-size: 18px;
-    }
-    .user-email {
-        margin-bottom: 20px;
-    }
-    button {
-        margin-bottom: 15px;
-        width: 100%;
+    width: 0;
+    overflow: hidden;
+    transition: all 200ms ease-out; /* Define transition properties */
+    position: absolute;
+    right: -1px;
+
+    .menu-wrapper {
+        margin: 30px;
+        .user-email,
+        .user-name {
+            color: #fff;
+        }
+        .user-name {
+            font-size: 18px;
+        }
+        .user-email {
+            margin-bottom: 20px;
+        }
+        button {
+            margin-bottom: 15px;
+            width: 100%;
+        }
     }
 }
-.drop-down-menu-wrapper-show {
+.menu-visible {
+    width: 300px; /* Set the width of the open menu */
+    transition: all 200ms ease-in-out; /* Define transition properties */
     right: 20px;
 }

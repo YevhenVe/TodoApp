@@ -12,7 +12,7 @@ import "./App.scss";
 const App = () => {
     const { uploadedImage } = useContext(BackgroundContext);
     const { user } = useContext(UserContext);
-    const { openDdMenu } = useContext(DdMenuContext);
+    const { isMenuClosed } = useContext(DdMenuContext);
 
     return (
         <div
@@ -22,7 +22,7 @@ const App = () => {
             }}
         >
             {user && <Header />}
-            <DropDownMenu className={openDdMenu ? "drop-down-menu-wrapper-show" : ""} />
+            <DropDownMenu className={!isMenuClosed ? "menu-visible" : ""} />
             <ImageUploadProgresss />
             <div className="app-account-wrapper">
                 <Account />

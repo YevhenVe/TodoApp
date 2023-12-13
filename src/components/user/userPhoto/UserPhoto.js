@@ -5,7 +5,7 @@ import "./UserPhoto.scss";
 
 const UserPhoto = ({ onClick }) => {
     const { user } = useContext(UserContext);
-    const { openDdMenu } = useContext(DdMenuContext);
+    const { isMenuClosed } = useContext(DdMenuContext);
 
     return (
         <div
@@ -17,7 +17,7 @@ const UserPhoto = ({ onClick }) => {
                 alt="avatar"
                 referrerPolicy="no-referrer"
             />
-            <div className={`arrow-icon-style ${openDdMenu ? "rotate" : ""}`} />
+            <div className={`arrow-icon-style ${isMenuClosed ? "rotate" : ""}`} />
         </div>
     );
 };

@@ -6,13 +6,13 @@ import "./Header.scss";
 
 const Header = () => {
     const { user } = useContext(UserContext);
-    const { openDdMenu, setOpenDdMenu } = useContext(DdMenuContext);
+    const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
 
     return (
         <div className="header-wrapper">
             {user ? (
                 <>
-                    <UserPhoto onClick={() => setOpenDdMenu(!openDdMenu)} />
+                    <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} />
                 </>
             ) : (
                 ""
