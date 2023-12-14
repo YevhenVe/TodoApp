@@ -1,15 +1,28 @@
 .records-wrapper {
-    .input-records {
-        width: calc(100% - 35px);
-        outline: none;
-        border: none;
-        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
-        background: transparent;
-        margin-bottom: 25px;
-        font-size: 18px;
-        color: #fff;
-        &::placeholder {
-            color: rgba($color: #fff, $alpha: 0.5);
+    .input-box {
+        position: relative;
+        .input-records {
+            width: calc(100% - 35px);
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+            background: transparent;
+            margin-bottom: 25px;
+            font-size: 18px;
+            color: #fff;
+            padding: 20px 40px 0 0;
+            &::placeholder {
+                color: rgba($color: #fff, $alpha: 0.5);
+            }
+        }
+        .set-item {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            border-radius: 50px;
+            height: 30px;
+            width: 30px;
+            padding: 0;
         }
     }
     .records {
@@ -19,6 +32,25 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .remove-record-text,
+            .check-record-text {
+                background-color: transparent;
+                border-radius: 50px;
+                padding: 0;
+                margin-right: 10px;
+                border: 0px;
+                .button-content-wrapper {
+                    .button-icon {
+                        margin-right: 0;
+                    }
+                }
+            }
+            .remove-record-text {
+                margin-right: 0px;
+            }
+        }
+        .disabled {
+            pointer-events: none;
         }
         .record {
             display: flex;
@@ -32,26 +64,13 @@
                 overflow-x: auto;
                 text-align: left;
             }
-            .remove-record-text,
-            .check-record-text {
-                background-color: transparent;
-                border-radius: 50px;
-                padding: 0;
-                margin-right: 0;
-                border: 0px;
-                .button-content-wrapper {
-                    .button-icon {
-                        margin-right: 0;
-                    }
-                }
-                &:last-child {
-                    margin-left: 10px;
-                }
-            }
         }
         .record-done {
             text-decoration: line-through;
             color: rgba($color: #fff, $alpha: 0.3);
         }
+    }
+    .disabled {
+        pointer-events: none;
     }
 }

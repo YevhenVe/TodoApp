@@ -15,6 +15,7 @@ const Records = () => {
     const [input, setInput] = useState("");
     const [checkedRecord, setCheckedRecord] = useState(null);
     const [removeRecordConfirmation, setRemoveRecordConfirmation] = useState(false);
+    const [selectedRecordId, setSelectedRecordId] = useState(null);
 
     useEffect(() => {
         if (user) {
@@ -53,7 +54,7 @@ const Records = () => {
             });
             setInput("");
         } else {
-            alert("Пожалуйста, войдите в систему для добавления записей.");
+            console.log("Sign in with Google to add the record");
         }
     };
 
@@ -89,13 +90,24 @@ const Records = () => {
 
     return (
         <div className="records-wrapper">
-            <input
-                className="input-records"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type your text here"
-            />
+            <div className="input-box">
+                <input
+                    className="input-records"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder="Type your text here"
+                />
+                <CustomButton
+                    className={`set-item ${!input ? "disabled" : ""}`}
+                    label=">"
+                    onClick={() => {
+                        if (input) {
+                            addRecord();
+                        } else return;
+                    }}
+                />
+            </div>
             <div className="records">
                 {records.map((record) => (
                     <div
@@ -103,7 +115,7 @@ const Records = () => {
                         className={`record ${record.checked ? "record-done" : ""}`}
                     >
                         <p className="record-text">{record.content}</p>
-                        <div className="button-box">
+                        <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
                             <CustomButton
                                 className="check-record-text"
                                 onClick={() => handleCheckRecord(record.id, !record.checked)}
@@ -111,27 +123,32 @@ const Records = () => {
                             />
                             <CustomButton
                                 className="remove-record-text"
-                                onClick={() => setRemoveRecordConfirmation(!removeRecordConfirmation)}
+                                onClick={() => {
+                                    setSelectedRecordId(record.id);
+                                    setRemoveRecordConfirmation(true);
+                                }}
                                 icon={<RemoveTextIcon />}
                             />
-                            {removeRecordConfirmation && (
-                                <RemoveConfirmation>
-                                    <CustomButton
-                                        className="remove-yes"
-                                        onClick={() => {
-                                            deleteRecord(record.id);
-                                            setRemoveRecordConfirmation(false);
-                                        }}
-                                        label="YES"
-                                    />
-                                    <CustomButton
-                                        className="remove-no"
-                                        onClick={() => setRemoveRecordConfirmation(false)}
-                                        label="NO"
-                                    />
-                                </RemoveConfirmation>
-                            )}
                         </div>
+                        {removeRecordConfirmation && (
+                            <RemoveConfirmation>
+                                <CustomButton
+                                    className="remove-yes"
+                                    onClick={() => {
+                                        if (selectedRecordId) {
+                                            deleteRecord(selectedRecordId);
+                                            setRemoveRecordConfirmation(false);
+                                        }
+                                    }}
+                                    label="YES"
+                                />
+                                <CustomButton
+                                    className="remove-no"
+                                    onClick={() => setRemoveRecordConfirmation(false)}
+                                    label="NO"
+                                />
+                            </RemoveConfirmation>
+                        )}
                     </div>
                 ))}
             </div>
