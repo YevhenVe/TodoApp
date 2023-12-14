@@ -9,7 +9,7 @@ const CustomButton = ({ label, icon, onClick, className, disabled }) => {
             disabled={disabled}
         >
             <div className="button-content-wrapper">
-                <div className="button-icon">{icon}</div>
+                {icon ? <div className="button-icon">{icon}</div> : <></>}
                 <div className="button-label">{label}</div>
             </div>
         </button>

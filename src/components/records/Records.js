@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import UserContext from "../../context/UserContext";
-import CustomButton from "../customButton/CustomButton";
+import { database } from "../../Firebase";
 import { ref, onValue, push, remove, update } from "firebase/database";
 import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.svg";
 import { ReactComponent as DoneIcon } from "../../assets/done.svg";
-import { database } from "../../Firebase";
+import UserContext from "../../context/UserContext";
+import CustomButton from "../customButton/CustomButton";
+import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
+
 import "./Records.scss";
 
 const Records = () => {
@@ -12,6 +14,7 @@ const Records = () => {
     const [records, setRecords] = useState([]);
     const [input, setInput] = useState("");
     const [checkedRecord, setCheckedRecord] = useState(null);
+    const [removeRecordConfirmation, setRemoveRecordConfirmation] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -108,9 +111,26 @@ const Records = () => {
                             />
                             <CustomButton
                                 className="remove-record-text"
-                                onClick={() => deleteRecord(record.id)}
+                                onClick={() => setRemoveRecordConfirmation(!removeRecordConfirmation)}
                                 icon={<RemoveTextIcon />}
                             />
+                            {removeRecordConfirmation && (
+                                <RemoveConfirmation>
+                                    <CustomButton
+                                        className="remove-yes"
+                                        onClick={() => {
+                                            deleteRecord(record.id);
+                                            setRemoveRecordConfirmation(false);
+                                        }}
+                                        label="YES"
+                                    />
+                                    <CustomButton
+                                        className="remove-no"
+                                        onClick={() => setRemoveRecordConfirmation(false)}
+                                        label="NO"
+                                    />
+                                </RemoveConfirmation>
+                            )}
                         </div>
                     </div>
                 ))}

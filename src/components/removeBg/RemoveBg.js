@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ref as storageRef, deleteObject } from "firebase/storage";
 import { ref, remove } from "firebase/database";
-import UserContext from "../../context/UserContext";
-import { database, storage } from "../../Firebase";
 import { ReactComponent as RemoveImageIcon } from "../../assets/removeImageIcon.svg";
+import { database, storage } from "../../Firebase";
+import UserContext from "../../context/UserContext";
+import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import BackgroundContext from "../../context/BackgroundContext";
 import CustomButton from "../customButton/CustomButton";
+import "./RemoveBg.scss";
 
 const RemoveBg = () => {
+    const [removeImageConfirmation, setRemoveImageConfirmation] = useState(false);
     const { images } = useContext(BackgroundContext);
     const { user } = useContext(UserContext);
 
@@ -27,12 +30,33 @@ const RemoveBg = () => {
         <>
             {images.map((image) => (
                 <CustomButton
-                    key={image.id}
-                    onClick={() => deleteImage(image.id, image.url)}
+                    onClick={() => setRemoveImageConfirmation(!removeImageConfirmation)}
                     label="Delete Background"
                     icon={<RemoveImageIcon />}
                 />
             ))}
+            {removeImageConfirmation && (
+                <RemoveConfirmation>
+                    {images.map((image) => (
+                        <>
+                            <CustomButton
+                                className="remove-yes"
+                                key={image.id}
+                                onClick={() => {
+                                    deleteImage(image.id, image.url);
+                                    setRemoveImageConfirmation(false);
+                                }}
+                                label="YES"
+                            />
+                            <CustomButton
+                                key={image.id}
+                                onClick={() => setRemoveImageConfirmation(false)}
+                                label="NO"
+                            />
+                        </>
+                    ))}
+                </RemoveConfirmation>
+            )}
         </>
     );
 };
