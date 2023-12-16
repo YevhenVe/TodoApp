@@ -33,6 +33,7 @@ const RemoveBg = () => {
                     onClick={() => setRemoveImageConfirmation(!removeImageConfirmation)}
                     label="Delete Background"
                     icon={<RemoveImageIcon />}
+                    key={image.id}
                 />
             ))}
             {removeImageConfirmation && (

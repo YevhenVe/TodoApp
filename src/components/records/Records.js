@@ -6,7 +6,6 @@ import { ReactComponent as DoneIcon } from "../../assets/done.svg";
 import UserContext from "../../context/UserContext";
 import CustomButton from "../customButton/CustomButton";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
-
 import "./Records.scss";
 
 const Records = () => {

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import ChangeStyleContext from "../../context/ChangeStyleContext";
 import UserContext from "../../context/UserContext";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
@@ -7,6 +8,7 @@ import "./Account.scss";
 
 const Account = () => {
     const { user } = useContext(UserContext);
+    const { data } = useContext(ChangeStyleContext);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
 
     useEffect(() => {
@@ -17,7 +19,7 @@ const Account = () => {
     }, []);
 
     return (
-        <div className="account-wrapper">
+        <div className={`account-wrapper ${data && user ? "non-styled" : ""}`}>
             <>
                 {user ? (
                     <>
