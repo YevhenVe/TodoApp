@@ -1,7 +1,5 @@
 import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, set, onValue } from "firebase/database";
-import { ReactComponent as BlurIcon } from "../../assets/blurIcon.svg";
-import CustomButton from "../customButton/CustomButton";
 import ChangeStyleContext from "../../context/ChangeStyleContext";
 import UserContext from "../../context/UserContext";
 import "./StyleChanger.scss";
