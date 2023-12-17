@@ -26,13 +26,17 @@ const StyleChanger = () => {
     };
 
     return (
-        <CustomButton
-            className="blur-button-on-off"
-            icon={<BlurIcon />}
-            onClick={handleClick}
-            title="Turn off Blur Effect"
-            label="Turn off blur"
-        />
+        <>
+            <div className="switcher-wrapper">
+                <div
+                    className={`swtcher-box ${data ? "swtcher-box-off" : ""}`}
+                    onClick={handleClick}
+                >
+                    <div className={`swither-off ${data ? "swither-on" : ""}`} />
+                </div>
+                <div className="switcher-label">{data ? "Interface blur OFF" : "Interface blur ON"}</div>
+            </div>
+        </>
     );
 };
 

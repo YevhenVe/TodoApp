@@ -15,9 +15,9 @@ const DropDownMenu = ({ className }) => {
                 <div className="menu-wrapper">
                     <div className="user-name">{user?.displayName}</div>
                     <div className="user-email">{user?.email}</div>
+                    <StylesChanger />
                     <CustomBackground />
                     <RemoveBg />
-                    <StylesChanger />
                     <Signout />
                 </div>
             </div>
