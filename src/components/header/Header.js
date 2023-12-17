@@ -3,7 +3,6 @@ import UserContext from "../../context/UserContext";
 import ChangeStyleContext from "../../context/ChangeStyleContext";
 import DdMenuContext from "../../context/DdMenuContext";
 import UserPhoto from "../user/userPhoto/UserPhoto";
-import StylesChanger from "../stylesChanger/StylesChanger";
 import "./Header.scss";
 
 const Header = () => {
@@ -15,7 +14,6 @@ const Header = () => {
         <div className={`header-wrapper ${data ? "no-blur" : ""}`}>
             {user ? (
                 <>
-                    <StylesChanger />
                     <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} />
                 </>
             ) : (

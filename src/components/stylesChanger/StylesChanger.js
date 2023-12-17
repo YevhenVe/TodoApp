@@ -29,6 +29,7 @@ const StyleChanger = () => {
             icon={<BlurIcon />}
             onClick={handleClick}
             title="Turn off Blur Effect"
+            label="Turn off blur"
         />
     );
 };

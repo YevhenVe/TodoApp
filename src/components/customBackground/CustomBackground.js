@@ -74,7 +74,6 @@ const CustomBackground = () => {
     const handleFileSelect = (e) => {
         const selectedImage = e.target.files[0];
         setImage(selectedImage);
-
         // Generate preview URL for the selected image
         if (selectedImage) {
             const imageUrl = URL.createObjectURL(selectedImage);
@@ -83,6 +82,25 @@ const CustomBackground = () => {
             setPreviewUrl(null);
         }
     };
+
+    useEffect(() => {
+        const handlePaste = (event) => {
+            const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+            const imageItem = Array.from(items).find((item) => item.kind === "file" && item.type.startsWith("image/"));
+
+            if (imageItem) {
+                const pasteImage = imageItem.getAsFile();
+                setImage(pasteImage);
+                setPreviewUrl(pasteImage ? URL.createObjectURL(pasteImage) : null);
+            }
+        };
+
+        document.addEventListener("paste", handlePaste);
+
+        return () => {
+            document.removeEventListener("paste", handlePaste);
+        };
+    }, []);
 
     return (
         <div className="background-wrapper">

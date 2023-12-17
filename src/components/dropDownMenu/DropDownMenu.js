@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Signout from "../signout/Signout";
 import RemoveBg from "../removeBg/RemoveBg";
+import StylesChanger from "../stylesChanger/StylesChanger";
 import UserContext from "../../context/UserContext";
 import CustomBackground from "../customBackground/CustomBackground";
 import "./DropDownMenu.scss";
@@ -15,6 +16,7 @@ const DropDownMenu = ({ className }) => {
                 <div className="user-email">{user?.email}</div>
                 <CustomBackground />
                 <RemoveBg />
+                <StylesChanger />
                 <Signout />
             </div>
         </div>
