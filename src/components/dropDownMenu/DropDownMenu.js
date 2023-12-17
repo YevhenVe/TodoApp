@@ -10,16 +10,18 @@ const DropDownMenu = ({ className }) => {
     const { user } = useContext(UserContext);
 
     return (
-        <div className={`menu-hidden ${className}`}>
-            <div className="menu-wrapper">
-                <div className="user-name">{user?.displayName}</div>
-                <div className="user-email">{user?.email}</div>
-                <CustomBackground />
-                <RemoveBg />
-                <StylesChanger />
-                <Signout />
+        <>
+            <div className={`menu-hidden ${className}`}>
+                <div className="menu-wrapper">
+                    <div className="user-name">{user?.displayName}</div>
+                    <div className="user-email">{user?.email}</div>
+                    <CustomBackground />
+                    <RemoveBg />
+                    <StylesChanger />
+                    <Signout />
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

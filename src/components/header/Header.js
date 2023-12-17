@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import ChangeStyleContext from "../../context/ChangeStyleContext";
+import StyleChanger from "../stylesChanger/StylesChanger";
 import DdMenuContext from "../../context/DdMenuContext";
 import UserPhoto from "../user/userPhoto/UserPhoto";
 import "./Header.scss";
@@ -12,6 +13,7 @@ const Header = () => {
 
     return (
         <div className={`header-wrapper ${data ? "no-blur" : ""}`}>
+            {/* <StyleChanger /> */}
             {user ? (
                 <>
                     <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} />

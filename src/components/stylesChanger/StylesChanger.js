@@ -10,18 +10,20 @@ const StyleChanger = () => {
     const { user } = useContext(UserContext);
     const { data, setData } = useContext(ChangeStyleContext);
 
+    useEffect(() => {
+        const handleChange = (snapshot) => {
+            setData(snapshot.val());
+        };
+        const databaseRef = ref(getDatabase(), `stylechanges/${user?.uid}/isStyleChanged`);
+        const unsubscribe = onValue(databaseRef, handleChange);
+        return () => {
+            unsubscribe();
+        };
+    }, [setData, user]);
+
     const handleClick = () => {
         set(ref(getDatabase(), `stylechanges/${user.uid}/isStyleChanged`), !data);
     };
-
-    useEffect(
-        () =>
-            onValue(ref(getDatabase(), `stylechanges/${user?.uid}/isStyleChanged`), (snapshot) => {
-                setData(snapshot.val());
-                console.log(data);
-            }),
-        []
-    );
 
     return (
         <CustomButton
