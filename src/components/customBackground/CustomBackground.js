@@ -84,6 +84,10 @@ const CustomBackground = () => {
     };
 
     useEffect(() => {
+        uploadImage();
+    }, [previewUrl]);
+
+    useEffect(() => {
         const handlePaste = (event) => {
             const items = (event.clipboardData || event.originalEvent.clipboardData).items;
             const imageItem = Array.from(items).find((item) => item.kind === "file" && item.type.startsWith("image/"));
