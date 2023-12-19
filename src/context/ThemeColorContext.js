@@ -21,13 +21,13 @@ export const ThemeColorProvider = ({ children }) => {
             unsubscribe();
         };
     }, [setTheme, user]);
-    if (theme) {
+    if (theme && user) {
         document.documentElement.style.setProperty(colorLight, "rgba(0, 0, 0, 0.1)");
-        document.documentElement.style.setProperty(colorDark, "rgba(255, 255, 255, 0.1)");
+        document.documentElement.style.setProperty(colorDark, "rgba(255, 255, 255, 0.3)");
         document.documentElement.style.setProperty(colorLightText, "rgb(20, 20, 20)");
         document.documentElement.style.setProperty(colorDarkText, "rgba(245, 245, 245, 1)");
     } else {
-        document.documentElement.style.setProperty(colorLight, "rgba(255, 255, 255, 0.1)");
+        document.documentElement.style.setProperty(colorLight, "rgba(255, 255, 255, 0.3)");
         document.documentElement.style.setProperty(colorDark, "rgba(0, 0, 0, 0.1)");
         document.documentElement.style.setProperty(colorLightText, "rgba(245, 245, 245, 1)");
         document.documentElement.style.setProperty(colorDarkText, "rgb(20, 20, 20)");
