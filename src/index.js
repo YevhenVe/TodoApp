@@ -6,18 +6,21 @@ import { DdMenuProvider } from "./context/DdMenuContext";
 import { ChangeStyleProvider } from "./context/ChangeStyleContext";
 import App from "./App";
 import "./index.scss";
+import { ThemeColorProvider } from "./context/ThemeColorContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     // <React.StrictMode>
     <UserProvider>
-        <DdMenuProvider>
-            <ChangeStyleProvider>
-                <BackgroundProvider>
-                    <App />
-                </BackgroundProvider>
-            </ChangeStyleProvider>
-        </DdMenuProvider>
+        <ThemeColorProvider>
+            <DdMenuProvider>
+                <ChangeStyleProvider>
+                    <BackgroundProvider>
+                        <App />
+                    </BackgroundProvider>
+                </ChangeStyleProvider>
+            </DdMenuProvider>
+        </ThemeColorProvider>
     </UserProvider>
     // </React.StrictMode>
 );

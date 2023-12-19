@@ -1,3 +1,5 @@
+@import "./StyleVariables.scss";
+
 .app-wrapper {
     position: relative;
     overflow-x: hidden;
@@ -7,7 +9,7 @@
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    color: #fff;
+    color: var(--light-text-color);
     text-align: center;
     .app-account-wrapper {
         display: flex;

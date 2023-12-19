@@ -13,8 +13,21 @@ const CustomBackground = () => {
     const { user } = useContext(UserContext);
     const { images, setImages, deleteImage, setProgress, setUploading } = useContext(BackgroundContext);
     const [image, setImage] = useState(null);
+    const [pastImg, setPastImg] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const fileInputRef = useRef(null);
+
+    const handleFileSelect = (e) => {
+        const selectedImage = e.target.files[0];
+        setImage(selectedImage);
+        // Generate preview URL for the selected image
+        if (selectedImage) {
+            const imageUrl = URL.createObjectURL(selectedImage);
+            setPreviewUrl(imageUrl);
+        } else {
+            setPreviewUrl(null);
+        }
+    };
 
     useEffect(() => {
         if (user) {
@@ -66,45 +79,25 @@ const CustomBackground = () => {
                     }
                 }
             );
-        } else {
-            console.log("error");
         }
     };
-
-    const handleFileSelect = (e) => {
-        const selectedImage = e.target.files[0];
-        setImage(selectedImage);
-        // Generate preview URL for the selected image
-        if (selectedImage) {
-            const imageUrl = URL.createObjectURL(selectedImage);
-            setPreviewUrl(imageUrl);
-        } else {
-            setPreviewUrl(null);
-        }
-    };
-
-    useEffect(() => {
-        uploadImage();
-    }, [previewUrl]);
 
     useEffect(() => {
         const handlePaste = (event) => {
             const items = (event.clipboardData || event.originalEvent.clipboardData).items;
             const imageItem = Array.from(items).find((item) => item.kind === "file" && item.type.startsWith("image/"));
-
             if (imageItem) {
-                const pasteImage = imageItem.getAsFile();
-                setImage(pasteImage);
-                setPreviewUrl(pasteImage ? URL.createObjectURL(pasteImage) : null);
+                setPastImg(imageItem.getAsFile());
+                setImage(pastImg);
+                setPreviewUrl(pastImg ? URL.createObjectURL(pastImg) : null);
             }
         };
-
         document.addEventListener("paste", handlePaste);
-
+        uploadImage();
         return () => {
             document.removeEventListener("paste", handlePaste);
         };
-    }, []);
+    }, [pastImg]);
 
     return (
         <div className="background-wrapper">

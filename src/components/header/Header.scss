@@ -3,7 +3,7 @@
     display: flex;
     justify-content: end;
     padding: 20px 45px;
-    background-color: rgba($color: #000000, $alpha: 0.05);
+    background-color: var(--dark-color);
     backdrop-filter: blur(30px);
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
     box-shadow: 0 10px 20px rgba($color: #000000, $alpha: 0.05);
@@ -11,5 +11,7 @@
     &.no-blur {
         backdrop-filter: blur(0);
         border-bottom: 0px solid rgba($color: #000000, $alpha: 0.1);
+        box-shadow: 0 10px 20px rgba($color: #000000, $alpha: 0);
+        background-color: transparent;
     }
 }

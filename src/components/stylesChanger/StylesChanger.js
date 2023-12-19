@@ -1,11 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import CustomSwitcher from "../customSwitcher/CustomSwitcher";
 import ChangeStyleContext from "../../context/ChangeStyleContext";
+import ThemeColorContext from "../../context/ThemeColorContext";
 import UserContext from "../../context/UserContext";
-import "./StyleChanger.scss";
 
 const StyleChanger = () => {
     const { user } = useContext(UserContext);
+    const { theme, handleClickTheme } = useContext(ThemeColorContext);
     const { data, setData } = useContext(ChangeStyleContext);
 
     useEffect(() => {
@@ -22,18 +24,20 @@ const StyleChanger = () => {
     const handleClick = () => {
         set(ref(getDatabase(), `stylechanges/${user.uid}/isStyleChanged`), !data);
     };
-
     return (
         <>
-            <div className="switcher-wrapper">
-                <div
-                    className={`swtcher-box ${data ? "swtcher-box-off" : ""}`}
-                    onClick={handleClick}
-                >
-                    <div className={`swither-off ${data ? "swither-on" : ""}`} />
-                </div>
-                <div className="switcher-label">{data ? "Interface blur OFF" : "Interface blur ON"}</div>
-            </div>
+            <CustomSwitcher
+                onClick={handleClickTheme}
+                getData={theme}
+                labelOff="Light theme"
+                labelOn="Dark theme"
+            />
+            <CustomSwitcher
+                onClick={handleClick}
+                getData={data}
+                labelOff="Interface blur OFF"
+                labelOn="Interface blur ON"
+            />
         </>
     );
 };

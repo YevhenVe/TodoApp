@@ -1,5 +1,7 @@
+@import "../../StyleVariables.scss";
+
 .user-wrapper {
-    color: #fff;
+    color: var(--light-text-color);
     margin-bottom: 40px;
     font-size: 4em;
     font-weight: 100;

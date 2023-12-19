@@ -1,3 +1,5 @@
+@import "../../StyleVariables.scss";
+
 .account-wrapper {
     display: flex;
     flex-direction: column;
@@ -6,7 +8,7 @@
     max-height: 80vh;
     min-width: 300px;
     max-width: 600px;
-    background-color: rgba($color: #000, $alpha: 0.1);
+    background-color: var(--dark-color);
     backdrop-filter: blur(30px);
     border: 1px solid rgba($color: #000, $alpha: 0.1);
     box-shadow: 0 20px 30px rgba($color: #000, $alpha: 0.3);
@@ -38,7 +40,7 @@
         .time {
             font-size: calc(60px + 20 * (100vw - 320px) / 880);
             font-weight: 600;
-            color: #fff;
+            color: var(--light-text-color);
             line-height: 1;
         }
     }
