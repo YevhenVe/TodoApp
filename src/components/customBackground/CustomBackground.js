@@ -13,7 +13,6 @@ const CustomBackground = () => {
     const { user } = useContext(UserContext);
     const { images, setImages, deleteImage, setProgress, setUploading } = useContext(BackgroundContext);
     const [image, setImage] = useState(null);
-    const [pastImg, setPastImg] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -87,17 +86,30 @@ const CustomBackground = () => {
             const items = (event.clipboardData || event.originalEvent.clipboardData).items;
             const imageItem = Array.from(items).find((item) => item.kind === "file" && item.type.startsWith("image/"));
             if (imageItem) {
-                setPastImg(imageItem.getAsFile());
+                const pastImg = imageItem.getAsFile();
                 setImage(pastImg);
                 setPreviewUrl(pastImg ? URL.createObjectURL(pastImg) : null);
             }
         };
         document.addEventListener("paste", handlePaste);
-        uploadImage();
         return () => {
             document.removeEventListener("paste", handlePaste);
         };
-    }, [pastImg]);
+    }, [previewUrl]);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                uploadImage(); // Trigger the uploadImage function on "Enter" key press
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [previewUrl]);
 
     return (
         <div className="background-wrapper">
