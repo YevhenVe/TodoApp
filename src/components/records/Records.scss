@@ -19,7 +19,7 @@
         }
         .set-item {
             position: absolute;
-            top: 15px;
+            top: 13px;
             right: 15px;
             border-radius: 50px;
             height: 30px;
@@ -58,13 +58,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin: 0 10px 10px 10px;
             color: var(--light-text-color);
             border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+            transition: all 100ms ease-in-out;
             .record-text {
                 margin-right: 10px;
                 overflow-x: auto;
                 text-align: left;
+            }
+            &:hover {
+                transition: all 100ns ease-in-out;
+                transform: scale(1.05);
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                padding: 0 5px;
             }
         }
         .record-done {

@@ -28,9 +28,9 @@ const StyleChanger = () => {
         <>
             <CustomSwitcher
                 onClick={handleClickTheme}
-                getData={theme}
-                labelOff="Light theme"
-                labelOn="Dark theme"
+                getData={!theme}
+                labelOff="Dark theme"
+                labelOn="Light theme"
             />
             <CustomSwitcher
                 onClick={handleClick}
