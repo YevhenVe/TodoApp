@@ -129,27 +129,27 @@ const Records = () => {
                                 icon={<RemoveTextIcon />}
                             />
                         </div>
-                        {removeRecordConfirmation && (
-                            <RemoveConfirmation>
-                                <CustomButton
-                                    className="remove-yes"
-                                    onClick={() => {
-                                        if (selectedRecordId) {
-                                            deleteRecord(selectedRecordId);
-                                            setRemoveRecordConfirmation(false);
-                                        }
-                                    }}
-                                    label="YES"
-                                />
-                                <CustomButton
-                                    className="remove-no"
-                                    onClick={() => setRemoveRecordConfirmation(false)}
-                                    label="NO"
-                                />
-                            </RemoveConfirmation>
-                        )}
                     </div>
                 ))}
+                {removeRecordConfirmation && (
+                    <RemoveConfirmation>
+                        <CustomButton
+                            className="remove-yes"
+                            onClick={() => {
+                                if (selectedRecordId) {
+                                    deleteRecord(selectedRecordId);
+                                    setRemoveRecordConfirmation(false);
+                                }
+                            }}
+                            label="YES"
+                        />
+                        <CustomButton
+                            className="remove-no"
+                            onClick={() => setRemoveRecordConfirmation(false)}
+                            label="NO"
+                        />
+                    </RemoveConfirmation>
+                )}
             </div>
         </div>
     );
