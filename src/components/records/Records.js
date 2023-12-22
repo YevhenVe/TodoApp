@@ -90,26 +90,26 @@ const Records = () => {
         }
     };
 
-    // Changing of useEffect to listen changes in 'age'
+    // Changing of useEffect to listen changes in 'option'
     useEffect(() => {
         if (selectedOption !== "") {
             setInput(`${selectedOption} ${input}`);
         }
     }, [selectedOption]);
 
-    // Update listener of value 'age'
+    // Update listener of value 'option'
     const handleOptionChange = (e) => {
         const newValue = e.target.value;
         setInput((prevInput) => prevInput.replace(`${selectedOption} `, "")); // Removing previous value
         setSelectedOption(newValue);
-        setOption(newValue); // Update the 'age' value to retain the selection
+        setOption(newValue); // Update the 'option' value to retain the selection
     };
 
     return (
         <div className="records-wrapper">
             <div className="options">
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Prefix</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
