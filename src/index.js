@@ -4,9 +4,10 @@ import { UserProvider } from "./context/UserContext";
 import { BackgroundProvider } from "./context/BackgroundContext";
 import { DdMenuProvider } from "./context/DdMenuContext";
 import { ChangeStyleProvider } from "./context/ChangeStyleContext";
+import { ThemeColorProvider } from "./context/ThemeColorContext";
+import { OptionProvider } from "./context/OptionContext";
 import App from "./App";
 import "./index.scss";
-import { ThemeColorProvider } from "./context/ThemeColorContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
             <DdMenuProvider>
                 <ChangeStyleProvider>
                     <BackgroundProvider>
-                        <App />
+                        <OptionProvider>
+                            <App />
+                        </OptionProvider>
                     </BackgroundProvider>
                 </ChangeStyleProvider>
             </DdMenuProvider>

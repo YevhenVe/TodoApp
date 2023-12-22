@@ -3,6 +3,7 @@
 .records-wrapper {
     .input-box {
         position: relative;
+        padding: 0 7.5px;
         .input-records {
             width: calc(100% - 35px);
             outline: none;
@@ -20,7 +21,7 @@
         .set-item {
             position: absolute;
             top: 13px;
-            right: 15px;
+            right: 25px;
             border-radius: 50px;
             height: 30px;
             width: 30px;
@@ -84,7 +85,7 @@
         pointer-events: none;
     }
     .options {
-        padding-top: 10px;
+        padding: 10px 25px 0 25px;
         width: 100%;
     }
 }

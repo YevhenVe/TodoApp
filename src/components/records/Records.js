@@ -3,21 +3,20 @@ import { database } from "../../Firebase";
 import { ref, onValue, push, remove, update } from "firebase/database";
 import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.svg";
 import { ReactComponent as DoneIcon } from "../../assets/done.svg";
-import { FormControl, MenuItem, InputLabel, Select } from "@mui/material";
+import OptionContext from "../../context/OptionContext";
 import UserContext from "../../context/UserContext";
 import CustomButton from "../customButton/CustomButton";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
+import RecordsOptions from "./recordsOptions/RecordsOptions";
 import "./Records.scss";
 
 const Records = () => {
     const { user } = useContext(UserContext);
     const [records, setRecords] = useState([]);
-    const [input, setInput] = useState("");
     const [checkedRecord, setCheckedRecord] = useState(null);
     const [removeRecordConfirmation, setRemoveRecordConfirmation] = useState(false);
     const [selectedRecordId, setSelectedRecordId] = useState(null);
-    const [option, setOption] = useState("");
-    const [selectedOption, setSelectedOption] = useState("");
+    const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
 
     useEffect(() => {
         if (user) {
@@ -86,44 +85,15 @@ const Records = () => {
         if (e.key === "Enter") {
             if (input) {
                 addRecord();
+                setSelectedOption("");
             } else return;
         }
-    };
-
-    // Changing of useEffect to listen changes in 'option'
-    useEffect(() => {
-        if (selectedOption !== "") {
-            setInput(`${selectedOption} ${input}`);
-        }
-    }, [selectedOption]);
-
-    // Update listener of value 'option'
-    const handleOptionChange = (e) => {
-        const newValue = e.target.value;
-        setInput((prevInput) => prevInput.replace(`${selectedOption} `, "")); // Removing previous value
-        setSelectedOption(newValue);
-        setOption(newValue); // Update the 'option' value to retain the selection
     };
 
     return (
         <div className="records-wrapper">
             <div className="options">
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Prefix</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        label="Prefix"
-                        value={selectedOption}
-                        onChange={handleOptionChange}
-                    >
-                        <MenuItem value="">None</MenuItem>
-                        <MenuItem value="Work -">Work</MenuItem>
-                        <MenuItem value="Home - ">Home</MenuItem>
-                        <MenuItem value="Family - ">Family</MenuItem>
-                        <MenuItem value="Personal - ">Personal</MenuItem>
-                    </Select>
-                </FormControl>
+                <RecordsOptions />
             </div>
             <div className="input-box">
                 <input
@@ -139,6 +109,7 @@ const Records = () => {
                     onClick={() => {
                         if (input) {
                             addRecord();
+                            setSelectedOption("");
                         } else return;
                     }}
                 />
