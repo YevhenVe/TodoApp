@@ -7,7 +7,7 @@
             width: calc(100% - 35px);
             outline: none;
             border: none;
-            border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+            border-bottom: 1px solid var(--light-text-color);
             background: transparent;
             margin-bottom: 25px;
             font-size: 18px;
@@ -61,7 +61,7 @@
             justify-content: space-between;
             margin: 0 10px 10px 10px;
             color: var(--light-text-color);
-            border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+            border-bottom: 1px solid var(--light-text-color);
             transition: all 100ms ease-in-out;
             .record-text {
                 margin-right: 10px;
@@ -82,5 +82,9 @@
     }
     .disabled {
         pointer-events: none;
+    }
+    .options {
+        padding-top: 10px;
+        width: 100%;
     }
 }
