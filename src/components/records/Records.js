@@ -90,6 +90,14 @@ const Records = () => {
         }
     };
 
+    useEffect(() => {
+        // Focus on input when selectedOption changes
+        const inputElement = document.querySelector(".input-records");
+        if (inputElement && selectedOption) {
+            inputElement.focus();
+        }
+    }, [selectedOption]);
+
     return (
         <div className="records-wrapper">
             <div className="options">

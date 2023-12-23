@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { FormControl, MenuItem, InputLabel, Select } from "@mui/material";
 import OptionContext from "../../../context/OptionContext";
+import "./RecordsOptions.scss";
+
 const RecordsOptions = () => {
     const { input, setInput, selectedOption, setSelectedOption, setOption } = useContext(OptionContext);
     // Changing of useEffect to listen changes in 'option'
@@ -19,10 +21,17 @@ const RecordsOptions = () => {
     };
     return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Prefix</InputLabel>
+            <InputLabel id="select-label">Prefix</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                sx={{
+                    ".MuiOutlinedInput-notchedOutline": {
+                        border: "1px solid var(--light-color)",
+                        color: "var(--light-text-color)",
+                        borderRadius: "15px",
+                    },
+                }}
+                labelId="select-label"
+                id="simple-select"
                 label="Prefix"
                 value={selectedOption}
                 onChange={handleOptionChange}
