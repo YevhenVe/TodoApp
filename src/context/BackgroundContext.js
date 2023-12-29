@@ -1,8 +1,8 @@
 import { createContext, useState, useContext } from "react";
 import { ref as storageRef, deleteObject } from "firebase/storage";
 import { ref, remove } from "firebase/database";
-import UserContext from "../context/UserContext";
 import { database, storage } from "../Firebase";
+import UserContext from "../context/UserContext";
 const BackgroundContext = createContext();
 
 export const BackgroundProvider = ({ children }) => {

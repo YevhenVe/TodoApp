@@ -4,6 +4,7 @@ import RemoveBg from "../removeBg/RemoveBg";
 import StylesChanger from "../stylesChanger/StylesChanger";
 import UserContext from "../../context/UserContext";
 import CustomBackground from "../customBackground/CustomBackground";
+import UserImageUpload from "../userImageUpload/userImageUpload";
 import "./DropDownMenu.scss";
 
 const DropDownMenu = ({ className, adClassName, onClick }) => {
@@ -17,6 +18,7 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
             />
             <div className={`menu-hidden ${className}`}>
                 <div className="menu-wrapper">
+                    <UserImageUpload />
                     <div className="user-name">{user?.displayName}</div>
                     <div className="user-email">{user?.email}</div>
                     <StylesChanger />

@@ -6,7 +6,7 @@ import { ReactComponent as ImageUploadIcon } from "../../assets/imageUploadIcon.
 import { ReactComponent as ChooseImage } from "../../assets/chooseImage.svg";
 import { ref, onValue, push } from "firebase/database";
 import { database, storage } from "../../Firebase";
-import { getDownloadURL, ref as storageRef, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref as storageRef, uploadBytesResumable, deleteObject } from "firebase/storage";
 import "./CustomBackground.scss";
 
 const CustomBackground = () => {

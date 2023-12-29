@@ -10,17 +10,7 @@ const Header = () => {
     const { data } = useContext(ChangeStyleContext);
     const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
 
-    return (
-        <div className={`header-wrapper ${data ? "no-blur" : ""}`}>
-            {user ? (
-                <>
-                    <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} />
-                </>
-            ) : (
-                ""
-            )}
-        </div>
-    );
+    return <div className={`header-wrapper ${data ? "no-blur" : ""}`}>{user ? <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} /> : ""}</div>;
 };
 
 export default Header;

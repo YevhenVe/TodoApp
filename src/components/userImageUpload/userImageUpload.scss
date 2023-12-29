@@ -1,0 +1,68 @@
+.user-image-wrapper {
+    position: relative;
+    .user-image-preview-wrapper {
+        .choose-image-label {
+            .preview-user-image {
+                width: 120px;
+                height: 120px;
+                border-radius: 100px;
+                object-fit: cover;
+            }
+        }
+        .user-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 100px;
+            object-fit: cover;
+        }
+    }
+    #user-file-input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+    }
+    .choose-user-image-label-wrapper {
+        .choose-user-image-label {
+            position: absolute;
+            cursor: pointer;
+            width: 120px;
+            height: 120px;
+            top: 60px;
+            left: 50%;
+            border-radius: 100px;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60%;
+            background-image: url("");
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transition: all 200ms ease-in-out;
+            &:hover {
+                background-image: url("../../assets//plusIcon.svg");
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            }
+        }
+    }
+    .remove-custome-user-image {
+        position: absolute;
+        top: 0px;
+        right: 50px;
+        max-width: 40px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 50px;
+        .button-content-wrapper {
+            justify-content: center;
+            .button-icon {
+                margin-right: 0;
+            }
+        }
+    }
+}
