@@ -100,7 +100,7 @@ const UserImageUpload = () => {
             <div className="user-image-wrapper">
                 {previewUserUrl && (
                     <>
-                        <div className="user-image-prewiv-wrapper">
+                        <div className="user-image-preview-wrapper">
                             <label
                                 htmlFor="file-input"
                                 className="choose-image-label"
