@@ -12,7 +12,7 @@ import "./userImageUpload.scss";
 
 const UserImageUpload = () => {
     const { user } = useContext(UserContext);
-    const { userImages, setUserImages, deleteUserImage, uploadedUserImage, setUploadingUserImage } = useContext(UserImageContext);
+    const { userImages, setUserImages, deleteUserImage, uploadedUserImage, setUploadingUserImage, setUserProgress } = useContext(UserImageContext);
     const [image, setImage] = useState(null);
     const [removeImageConfirmation, setRemoveImageConfirmation] = useState(false);
     const [previewUserUrl, setPreviewUserUrl] = useState(null);
@@ -59,8 +59,8 @@ const UserImageUpload = () => {
             uploadTask.on(
                 "state_changed",
                 (snapshot) => {
-                    // const progress = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(2);
-                    // setProgress(progress);
+                    const progress = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(2);
+                    setUserProgress(progress);
                     setUploadingUserImage(true);
                 },
                 (error) => {},
