@@ -11,6 +11,10 @@ const Account = () => {
     const { data } = useContext(ChangeStyleContext);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
 
+    const options = { weekday: "long", month: "long", day: "numeric" };
+    const currentDate = new Date().toLocaleDateString("en-US", options);
+    const [dayOfWeek, dateWithoutDay] = currentDate.split(", ");
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
@@ -25,6 +29,10 @@ const Account = () => {
                     <>
                         <div className="fixed-account-content">
                             <div className="time">{currentTime}</div>
+                            <div className="current-date">Today is: {dayOfWeek}</div>
+                            <div className="current-date">
+                                {dateWithoutDay} {new Date().getFullYear()}
+                            </div>
                             <User />
                         </div>
                         <div className="account-content">

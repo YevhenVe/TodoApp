@@ -27,6 +27,9 @@
             width: 30px;
             padding: 0;
         }
+        .sort-button {
+            cursor: pointer;
+        }
     }
     .records {
         margin-bottom: 25px;
@@ -68,6 +71,11 @@
                 margin-right: 10px;
                 overflow-x: auto;
                 text-align: left;
+                .record-timestamp {
+                    font-weight: 200;
+                    font-size: 14px;
+                    text-decoration: underline;
+                }
             }
             &:hover {
                 transform: scale(1.05);
