@@ -1,0 +1,15 @@
+.weather-wrapper {
+    font-size: 14px;
+    font-weight: 300;
+    .weather-city-name {
+        text-align: left;
+    }
+    .temp-box {
+        display: flex;
+        align-items: center;
+        height: 20px;
+        img {
+            height: 40px;
+        }
+    }
+}

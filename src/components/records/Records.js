@@ -99,11 +99,7 @@ const Records = () => {
         }
     }, [selectedOption]);
 
-    // Convert timestamp to date and time
-    function formatTimestamp(timestamp) {
-        const date = new Date(timestamp);
-        return date.toLocaleString();
-    }
+    const sortedRecords = [...records].sort((a, b) => (isSorted ? new Date(b.timestamp) - new Date(a.timestamp) : a.checked ? 1 : -1));
 
     return (
         <div className="records-wrapper">
@@ -128,43 +124,43 @@ const Records = () => {
                         } else return;
                     }}
                 />
-                <p
-                    className="sort-button"
-                    onClick={() => setIsSorted(!isSorted)}
-                >
-                    Sort by date{isSorted ? " ▼" : " ▲"}
-                </p>
+                {records.length > 1 && (
+                    <p
+                        className="sort-button"
+                        onClick={() => setIsSorted(!isSorted)}
+                    >
+                        Sort by date{isSorted ? " ▼" : " ▲"}
+                    </p>
+                )}
             </div>
             <div className="records">
-                {records
-                    .sort((a, b) => (isSorted ? new Date(b.timestamp) - new Date(a.timestamp) : a.checked ? 1 : -1))
-                    .map((record) => (
-                        <div
-                            key={record.id}
-                            className={`record ${record.checked ? "record-done" : ""}`}
-                        >
-                            <p className="record-text">
-                                <span className="record-timestamp">{formatTimestamp(record.timestamp)}</span>
-                                <br />
-                                <span>{record.content}</span>
-                            </p>
-                            <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
-                                <CustomButton
-                                    className="check-record-text"
-                                    onClick={() => handleCheckRecord(record.id, !record.checked)}
-                                    icon={<DoneIcon />}
-                                />
-                                <CustomButton
-                                    className="remove-record-text"
-                                    onClick={() => {
-                                        setSelectedRecordId(record.id);
-                                        setRemoveRecordConfirmation(true);
-                                    }}
-                                    icon={<RemoveTextIcon />}
-                                />
-                            </div>
+                {sortedRecords.map((record) => (
+                    <div
+                        key={record.id}
+                        className={`record ${record.checked ? "record-done" : ""}`}
+                    >
+                        <p className="record-text">
+                            <span className="record-timestamp">{new Date(record.timestamp).toLocaleString()}</span>
+                            <br />
+                            <span>{record.content}</span>
+                        </p>
+                        <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
+                            <CustomButton
+                                className="check-record-text"
+                                onClick={() => handleCheckRecord(record.id, !record.checked)}
+                                icon={<DoneIcon />}
+                            />
+                            <CustomButton
+                                className="remove-record-text"
+                                onClick={() => {
+                                    setSelectedRecordId(record.id);
+                                    setRemoveRecordConfirmation(true);
+                                }}
+                                icon={<RemoveTextIcon />}
+                            />
                         </div>
-                    ))}
+                    </div>
+                ))}
                 {removeRecordConfirmation && (
                     <RemoveConfirmation>
                         <CustomButton

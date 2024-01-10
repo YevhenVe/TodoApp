@@ -15,7 +15,8 @@
             color: var(--light-text-color);
             padding: 20px 40px 0 0;
             &::placeholder {
-                color: rgba($color: #fff, $alpha: 0.5);
+                color: var(--light-text-color);
+                opacity: 0.5;
             }
         }
         .set-item {
@@ -29,6 +30,8 @@
         }
         .sort-button {
             cursor: pointer;
+            margin: 0 0 15px 18px;
+            text-align: left;
         }
     }
     .records {
@@ -85,8 +88,16 @@
             }
         }
         .record-done {
+            position: relative;
             text-decoration: line-through;
-            color: rgba($color: #fff, $alpha: 0.3);
+            color: var(--light-text-color);
+            &::after {
+                content: "";
+                position: absolute;
+                width: 83%;
+                height: 100%;
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 10%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+            }
         }
     }
     .disabled {

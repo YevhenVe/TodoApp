@@ -26,6 +26,9 @@
     @media screen and (max-width: 767px) {
         max-width: 90%;
     }
+    @media screen and (min-width: 768px) {
+        min-width: 720px;
+    }
     .account-content {
         overflow-y: auto;
         width: 100%;
