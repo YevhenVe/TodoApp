@@ -3,7 +3,7 @@ import UserContext from "../../context/UserContext";
 import UserImageContext from "../../context/UserImageContext";
 import CustomButton from "../customButton/CustomButton";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
-import { ReactComponent as RemoveImageIcon } from "../../assets/removeImageIcon.svg";
+import { ReactComponent as RemoveUserImageIcon } from "../../assets/removeUserImg.svg";
 import { ReactComponent as ImageUploadIcon } from "../../assets/imageUploadIcon.svg";
 import { ref, onValue, push, remove } from "firebase/database";
 import { database, storage } from "../../Firebase";
@@ -155,7 +155,7 @@ const UserImageUpload = () => {
                     <CustomButton
                         className="remove-custome-user-image"
                         onClick={() => setRemoveImageConfirmation(!removeImageConfirmation)}
-                        icon={<RemoveImageIcon />}
+                        icon={<RemoveUserImageIcon />}
                         key={image?.id}
                     />
                 )}{" "}
