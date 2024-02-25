@@ -10,7 +10,7 @@ export const BackgroundProvider = ({ children }) => {
     const [images, setImages] = useState([]);
     const [progress, setProgress] = useState("");
     const [uploading, setUploading] = useState(false);
-    const uploadedImage = images[0]?.url;
+    const backgroundImage = images[0]?.url;
 
     const deleteImage = async (imageId, imageUrl) => {
         // Delete reference from database
@@ -23,7 +23,7 @@ export const BackgroundProvider = ({ children }) => {
             console.error("Error deleting image from storage", error);
         }
     };
-    return <BackgroundContext.Provider value={{ images, setImages, deleteImage, progress, setProgress, uploading, setUploading, uploadedImage }}>{children}</BackgroundContext.Provider>;
+    return <BackgroundContext.Provider value={{ images, setImages, deleteImage, progress, setProgress, uploading, setUploading, backgroundImage }}>{children}</BackgroundContext.Provider>;
 };
 
 export default BackgroundContext;

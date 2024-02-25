@@ -1,0 +1,42 @@
+.alluser {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 80px 40px 20px;
+    overflow-y: auto;
+    height: 100%;
+    z-index: 2;
+    .close-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        color: #555;
+        svg {
+            stroke: #fff;
+            width: 40px;
+            height: 40px;
+        }
+    }
+    .user-data-wrapper {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        border: solid 1px #555;
+        padding: 10px 20px;
+        img {
+            border-radius: 50px;
+        }
+        .user-data {
+            p {
+                font-size: 14px;
+                text-align: left;
+                color: var(--dark-text-color);
+            }
+        }
+    }
+}

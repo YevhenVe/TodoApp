@@ -10,7 +10,7 @@ import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
 import "./App.scss";
 
 const App = () => {
-    const { uploadedImage } = useContext(BackgroundContext);
+    const { backgroundImage } = useContext(BackgroundContext);
     const { user } = useContext(UserContext);
     const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
 
@@ -18,7 +18,7 @@ const App = () => {
         <div
             className="app-wrapper"
             style={{
-                backgroundImage: `url(${user ? (uploadedImage ? uploadedImage : DefoultBackground) : DefoultBackground})`,
+                backgroundImage: `url(${user ? (backgroundImage ? backgroundImage : DefoultBackground) : DefoultBackground})`,
             }}
         >
             {user && <Header />}

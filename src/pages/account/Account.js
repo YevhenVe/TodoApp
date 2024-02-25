@@ -4,13 +4,14 @@ import UserContext from "../../context/UserContext";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
+import ImageList from "../../components/imageList/ImageList";
+import UsersData from "../../components/usersData/UsersData";
 import "./Account.scss";
 
 const Account = () => {
     const { user } = useContext(UserContext);
     const { data } = useContext(ChangeStyleContext);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-
     const options = { weekday: "long", month: "long", day: "numeric" };
     const currentDate = new Date().toLocaleDateString("en-US", options);
     const [dayOfWeek, dateWithoutDay] = currentDate.split(", ");
@@ -28,6 +29,7 @@ const Account = () => {
                 {user ? (
                     <>
                         <div className="fixed-account-content">
+                            <UsersData />
                             <div className="time">{currentTime}</div>
                             <div className="current-date">Today is: {dayOfWeek}</div>
                             <div className="current-date">
@@ -38,6 +40,7 @@ const Account = () => {
                         <div className="account-content">
                             <Records />
                         </div>
+                        <ImageList />
                     </>
                 ) : (
                     <div className="wellcome-page">
