@@ -5,7 +5,18 @@ import { ReactComponent as RemoveImageButtonIcon } from "../../assets/removeUser
 import "./UsersData.scss";
 
 const UsersData = () => {
-    const { role, allUsersData, setAllUsersData, showAllUsers, setShowAllUsers } = useContext(UserContext);
+    const { user, role, setRole, allUsersData, setAllUsersData, showAllUsers, setShowAllUsers } = useContext(UserContext);
+
+    useEffect(() => {
+        const handleChange = (snapshot) => {
+            setRole(snapshot.val());
+        };
+        const databaseRef = ref(getDatabase(), `users/${user?.uid}/user_role/user_role`);
+        const unsubscribe = onValue(databaseRef, handleChange);
+        return () => {
+            unsubscribe();
+        };
+    }, [setRole, user]);
 
     useEffect(() => {
         const db = getDatabase();
@@ -48,7 +59,7 @@ const UsersData = () => {
                                         <p>Username: {allUsersData[userId].username}</p>
                                         <p>Email: {allUsersData[userId].email}</p>
                                         <p>User ID: {userId}</p>
-                                        <p>User Role: {allUsersData[userId].user_role.user_role ? "Admin" : "User"}</p>
+                                        <p>User Role: {allUsersData[userId].user_role ? "Admin" : "User"}</p>
                                     </div>
                                 </div>
                             ))}

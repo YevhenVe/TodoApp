@@ -28,14 +28,23 @@
         border-radius: 20px;
         border: solid 1px #555;
         padding: 10px 20px;
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            align-items: center;
+        }
         img {
             border-radius: 50px;
+            width: 60px;
+            height: 60px;
         }
         .user-data {
             p {
-                font-size: 14px;
+                font-size: 1vw;
                 text-align: left;
                 color: var(--dark-text-color);
+                @media screen and (max-width: 767px) {
+                    font-size: 2.2vw;
+                }
             }
         }
     }

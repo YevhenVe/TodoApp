@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Signout from "../signout/Signout";
 import RemoveBg from "../removeBg/RemoveBg";
 import StylesChanger from "../stylesChanger/StylesChanger";
@@ -7,11 +7,23 @@ import CustomBackground from "../customBackground/CustomBackground";
 import UserImageUpload from "../userImageUpload/userImageUpload";
 import CustomButton from "../customButton/CustomButton";
 import UserRole from "../userRole/UserRole";
+import { getDatabase, ref, onValue } from "firebase/database";
 import "./DropDownMenu.scss";
 
 const DropDownMenu = ({ className, adClassName, onClick }) => {
-    const { user, role } = useContext(UserContext);
+    const { user, setRole, role } = useContext(UserContext);
     const { showAllUsers, setShowAllUsers } = useContext(UserContext);
+
+    useEffect(() => {
+        const handleChange = (snapshot) => {
+            setRole(snapshot.val());
+        };
+        const databaseRef = ref(getDatabase(), `users/${user?.uid}/user_role/user_role`);
+        const unsubscribe = onValue(databaseRef, handleChange);
+        return () => {
+            unsubscribe();
+        };
+    }, [setRole, user]);
 
     return (
         <>
@@ -24,17 +36,15 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
                     <UserImageUpload />
                     <div className="user-name">{user?.displayName}</div>
                     <div className="user-email">{user?.email}</div>
-                    {role ? <UserRole /> : <></>}
+                    {role && <UserRole />}
                     <StylesChanger />
                     <CustomBackground />
                     <RemoveBg />
-                    {role ? (
+                    {role && (
                         <CustomButton
                             onClick={() => setShowAllUsers(!showAllUsers)}
                             label="Show all users"
                         />
-                    ) : (
-                        <></>
                     )}
                     <Signout />
                 </div>

@@ -6,6 +6,12 @@ import UserContext from "../../context/UserContext";
 const UserRole = () => {
     const { user, role, setRole } = useContext(UserContext);
 
+    const handleClick = () => {
+        const newRole = !role;
+        set(ref(getDatabase(), `userRole/${user.uid}/user_role`), newRole);
+        update(ref(getDatabase(), `users/${user.uid}/user_role`), { user_role: newRole });
+    };
+
     useEffect(() => {
         const handleChange = (snapshot) => {
             setRole(snapshot.val());
@@ -16,12 +22,6 @@ const UserRole = () => {
             unsubscribe();
         };
     }, [setRole, user]);
-
-    const handleClick = () => {
-        const newRole = !role;
-        set(ref(getDatabase(), `userRole/${user.uid}/user_role`), newRole);
-        update(ref(getDatabase(), `users/${user.uid}/user_role`), { user_role: newRole });
-    };
 
     return (
         <>
