@@ -3,6 +3,7 @@ import { database } from "../../Firebase";
 import { ref, onValue, push, remove, update } from "firebase/database";
 import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.svg";
 import { ReactComponent as DoneIcon } from "../../assets/done.svg";
+import { ReactComponent as EditIcon } from "../../assets/edit.svg";
 import OptionContext from "../../context/OptionContext";
 import UserContext from "../../context/UserContext";
 import CustomButton from "../customButton/CustomButton";
@@ -18,6 +19,24 @@ const Records = () => {
     const [selectedRecordId, setSelectedRecordId] = useState(null);
     const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
     const [isSorted, setIsSorted] = useState(false);
+    const [editingRecordId, setEditingRecordId] = useState(null);
+    const [editedContent, setEditedContent] = useState("");
+
+    const startEditing = (recordId, currentContent) => {
+        setEditingRecordId(recordId);
+        setEditedContent(currentContent);
+    };
+
+    const submitEdit = (recordId) => {
+        if (user && editedContent.trim() !== "") {
+            const recordRef = ref(database, "records/" + user.uid + "/" + recordId);
+            update(recordRef, {
+                content: editedContent,
+            });
+            setEditingRecordId(null);
+            setEditedContent("");
+        }
+    };
 
     useEffect(() => {
         if (user) {
@@ -139,17 +158,35 @@ const Records = () => {
                         key={record.id}
                         className={`record ${record.checked ? "record-done" : ""}`}
                     >
-                        <p className="record-text">
-                            <span className="record-timestamp">{new Date(record.timestamp).toLocaleString()}</span>
-                            <br />
-                            <span>{record.content}</span>
-                        </p>
+                        {editingRecordId === record.id ? (
+                            <input
+                                className="edit-input"
+                                value={editedContent}
+                                onChange={(e) => setEditedContent(e.target.value)}
+                                onKeyPress={(e) => {
+                                    if (e.key === "Enter") submitEdit(record.id);
+                                }}
+                            />
+                        ) : (
+                            <p className="record-text">
+                                <span className="record-timestamp">{new Date(record.timestamp).toLocaleString()}</span>
+                                <br />
+                                <span>{record.content}</span>
+                            </p>
+                        )}
                         <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
                             <CustomButton
                                 className="check-record-text"
                                 onClick={() => handleCheckRecord(record.id, !record.checked)}
                                 icon={<DoneIcon />}
                             />
+                            {!checkedRecord && (
+                                <CustomButton
+                                    className="edit-record-text"
+                                    onClick={() => startEditing(record.id, record.content)}
+                                    icon={<EditIcon />}
+                                />
+                            )}
                             <CustomButton
                                 className="remove-record-text"
                                 onClick={() => {

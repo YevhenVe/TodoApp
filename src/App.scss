@@ -17,5 +17,9 @@
         margin-top: 25px;
         justify-content: center;
         align-items: center;
+        @media screen and (max-width: 500px) {
+            margin-top: 0px;
+            height: calc(100vh - 80.8px);
+        }
     }
 }
