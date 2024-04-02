@@ -5,7 +5,7 @@ const ThemeColorContext = createContext();
 
 export const ThemeColorProvider = ({ children }) => {
     const { user } = useContext(UserContext);
-    const [theme, setTheme] = useState(false);
+    const [theme, setTheme] = useState(true);
     const colorLight = "--light-color";
     const colorDark = "--dark-color";
     const colorLightText = "--light-text-color";
@@ -21,6 +21,7 @@ export const ThemeColorProvider = ({ children }) => {
             unsubscribe();
         };
     }, [setTheme, user]);
+
     if (theme && user) {
         document.documentElement.style.setProperty(colorLight, "rgba(0, 0, 0, 0.1)");
         document.documentElement.style.setProperty(colorDark, "rgba(255, 255, 255, 0.3)");

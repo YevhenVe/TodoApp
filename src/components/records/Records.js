@@ -175,16 +175,18 @@ const Records = () => {
                             </p>
                         )}
                         <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
-                            <CustomButton
-                                className="check-record-text"
-                                onClick={() => handleCheckRecord(record.id, !record.checked)}
-                                icon={<DoneIcon />}
-                            />
+                            {!editingRecordId && (
+                                <CustomButton
+                                    className="check-record-text"
+                                    onClick={() => handleCheckRecord(record.id, !record.checked)}
+                                    icon={<DoneIcon />}
+                                />
+                            )}
                             {!checkedRecord && (
                                 <CustomButton
                                     className="edit-record-text"
-                                    onClick={() => startEditing(record.id, record.content)}
-                                    icon={<EditIcon />}
+                                    onClick={editingRecordId === record.id ? () => submitEdit(record.id) : () => startEditing(record.id, record.content)}
+                                    icon={!editingRecordId ? <EditIcon /> : <DoneIcon />}
                                 />
                             )}
                             <CustomButton
