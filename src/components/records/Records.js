@@ -27,6 +27,14 @@ const Records = () => {
         setEditedContent(currentContent);
     };
 
+    //Auto focus on input if click edit
+    useEffect(() => {
+        const inputElement = document.querySelector(".edit-input");
+        if (inputElement && editingRecordId !== null) {
+            inputElement.focus();
+        }
+    }, [editingRecordId]);
+
     const submitEdit = (recordId) => {
         if (user && editedContent.trim() !== "") {
             const recordRef = ref(database, "records/" + user.uid + "/" + recordId);
@@ -175,18 +183,16 @@ const Records = () => {
                             </p>
                         )}
                         <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
-                            {!editingRecordId && (
-                                <CustomButton
-                                    className="check-record-text"
-                                    onClick={() => handleCheckRecord(record.id, !record.checked)}
-                                    icon={<DoneIcon />}
-                                />
-                            )}
-                            {!checkedRecord && (
+                            <CustomButton
+                                className="check-record-text"
+                                onClick={() => handleCheckRecord(record.id, !record.checked)}
+                                icon={editingRecordId === record.id ? <></> : <DoneIcon />}
+                            />
+                            {!record.checked && (
                                 <CustomButton
                                     className="edit-record-text"
                                     onClick={editingRecordId === record.id ? () => submitEdit(record.id) : () => startEditing(record.id, record.content)}
-                                    icon={!editingRecordId ? <EditIcon /> : <DoneIcon />}
+                                    icon={editingRecordId === record.id ? <DoneIcon /> : <EditIcon />}
                                 />
                             )}
                             <CustomButton
