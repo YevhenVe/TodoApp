@@ -6,8 +6,7 @@
     align-items: center;
     justify-content: center;
     max-height: 80vh;
-    min-width: 300px;
-    max-width: 600px;
+    width: 50%;
     background-color: var(--dark-color);
     backdrop-filter: blur(30px);
     border: 1px solid rgba($color: #000, $alpha: 0.1);
@@ -23,7 +22,7 @@
         background-color: transparent;
         border: none;
     }
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 800px) {
         width: 100%;
         margin: 0;
         padding: 0;

@@ -25,7 +25,12 @@
     transition: all 200ms ease-out; /* Define transition properties */
     position: absolute;
     right: -1px;
-
+    @media screen and (max-width: 800px) {
+        height: calc(100vh - 120px);
+        overflow-y: auto;
+        justify-content: start;
+        z-index: 4;
+    }
     .menu-wrapper {
         margin: 30px;
         .user-email,
