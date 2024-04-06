@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, set, onValue, update } from "firebase/database";
 import CustomSwitcher from "../customSwitcher/CustomSwitcher";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "context/Context";
 
 const UserRole = () => {
     const { user, role, setRole } = useContext(UserContext);

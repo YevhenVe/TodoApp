@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import UserContext from "../../context/UserContext";
-import BackgroundContext from "../../context/BackgroundContext";
+import { UserContext, BackgroundContext } from "context/Context";
 import CustomButton from "../customButton/CustomButton";
 import { ReactComponent as ImageUploadIcon } from "../../assets/imageUploadIcon.svg";
 import { ReactComponent as ChooseImage } from "../../assets/chooseImage.svg";

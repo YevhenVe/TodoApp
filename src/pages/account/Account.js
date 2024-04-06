@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import ChangeStyleContext from "../../context/ChangeStyleContext";
-import UserContext from "../../context/UserContext";
+import { UserContext, ChangeStyleContext } from "context/Context";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";

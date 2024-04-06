@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "./context/UserContext";
-import BackgroundContext from "./context/BackgroundContext";
-import DdMenuContext from "./context/DdMenuContext";
+import { UserContext, BackgroundContext, DdMenuContext } from "context/Context";
 import Header from "./components/header/Header";
 import DefoultBackground from "./assets/bg.jpg";
 import Account from "./pages/account/Account";

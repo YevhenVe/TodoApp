@@ -1,9 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import CustomSwitcher from "../customSwitcher/CustomSwitcher";
-import ChangeStyleContext from "../../context/ChangeStyleContext";
-import ThemeColorContext from "../../context/ThemeColorContext";
-import UserContext from "../../context/UserContext";
+import { UserContext, ChangeStyleContext, ThemeColorContext } from "context/Context";
 
 const StyleChanger = () => {
     const { user } = useContext(UserContext);

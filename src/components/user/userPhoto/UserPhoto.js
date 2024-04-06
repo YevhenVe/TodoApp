@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "../../../context/UserContext";
-import DdMenuContext from "../../../context/DdMenuContext";
-import UserImageContext from "../../../context/UserImageContext";
+import { UserContext, DdMenuContext, UserImageContext } from "context/Context";
 import "./UserPhoto.scss";
 
 const UserPhoto = ({ onClick }) => {

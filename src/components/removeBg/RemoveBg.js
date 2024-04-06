@@ -3,9 +3,8 @@ import { ref as storageRef, deleteObject } from "firebase/storage";
 import { ref, remove } from "firebase/database";
 import { ReactComponent as RemoveImageIcon } from "../../assets/removeImageIcon.svg";
 import { database, storage } from "../../Firebase";
-import UserContext from "../../context/UserContext";
+import { UserContext, BackgroundContext } from "context/Context";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
-import BackgroundContext from "../../context/BackgroundContext";
 import CustomButton from "../customButton/CustomButton";
 import "./RemoveBg.scss";
 

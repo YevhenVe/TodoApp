@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import BackgroundContext from "../../context/BackgroundContext";
-import UserImageContext from "../../context/UserImageContext";
+import { BackgroundContext, UserImageContext } from "context/Context";
 import "./ImageUploadProgress.scss";
 
 const ImageUploadProgress = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "context/Context";
 
 const ImageList = () => {
     const { user } = useContext(UserContext);
