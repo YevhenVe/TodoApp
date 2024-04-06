@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Signout from "../signout/Signout";
 import RemoveBg from "../removeBg/RemoveBg";
 import StylesChanger from "../stylesChanger/StylesChanger";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "context/Context";
 import CustomBackground from "../customBackground/CustomBackground";
 import UserImageUpload from "../userImageUpload/userImageUpload";
 import CustomButton from "../customButton/CustomButton";
@@ -11,8 +11,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import "./DropDownMenu.scss";
 
 const DropDownMenu = ({ className, adClassName, onClick }) => {
-    const { user, setRole, role } = useContext(UserContext);
-    const { showAllUsers, setShowAllUsers } = useContext(UserContext);
+    const { user, setRole, role, showAllUsers, setShowAllUsers } = useContext(UserContext);
 
     useEffect(() => {
         const handleChange = (snapshot) => {

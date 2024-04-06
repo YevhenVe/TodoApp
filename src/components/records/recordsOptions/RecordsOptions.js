@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { FormControl, MenuItem, InputLabel, Select } from "@mui/material";
-import OptionContext from "../../../context/OptionContext";
+import { OptionContext } from "context/Context";
 import "./RecordsOptions.scss";
 
 const RecordsOptions = () => {

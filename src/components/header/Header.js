@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "../../context/UserContext";
-import ChangeStyleContext from "../../context/ChangeStyleContext";
-import DdMenuContext from "../../context/DdMenuContext";
+import { UserContext, ChangeStyleContext, DdMenuContext } from "context/Context";
 import UserPhoto from "../user/userPhoto/UserPhoto";
 import "./Header.scss";
 import Weather from "../weather/Weather";

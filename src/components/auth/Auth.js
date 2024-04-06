@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { auth } from "../../Firebase";
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, get, ref, set } from "firebase/database";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "context/Context";
 import CustomButton from "../customButton/CustomButton";
 import { ReactComponent as GoogleIcon } from "../../assets/googleIcon.svg";
 

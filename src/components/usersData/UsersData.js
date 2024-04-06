@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "context/Context";
 import { ReactComponent as RemoveImageButtonIcon } from "../../assets/removeUserImg.svg";
 import "./UsersData.scss";
 

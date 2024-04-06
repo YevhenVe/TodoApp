@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import UserContext from "../../context/UserContext";
-import UserImageContext from "../../context/UserImageContext";
+import { UserContext, UserImageContext } from "context/Context";
 import CustomButton from "../customButton/CustomButton";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import { ReactComponent as RemoveUserImageIcon } from "../../assets/removeUserImg.svg";

@@ -4,8 +4,7 @@ import { ref, onValue, push, remove, update } from "firebase/database";
 import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.svg";
 import { ReactComponent as DoneIcon } from "../../assets/done.svg";
 import { ReactComponent as EditIcon } from "../../assets/edit.svg";
-import OptionContext from "../../context/OptionContext";
-import UserContext from "../../context/UserContext";
+import { UserContext, OptionContext } from "context/Context";
 import CustomButton from "../customButton/CustomButton";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import RecordsOptions from "./recordsOptions/RecordsOptions";
@@ -13,11 +12,11 @@ import "./Records.scss";
 
 const Records = () => {
     const { user } = useContext(UserContext);
+    const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
     const [records, setRecords] = useState([]);
     const [checkedRecord, setCheckedRecord] = useState(null);
     const [removeRecordConfirmation, setRemoveRecordConfirmation] = useState(false);
     const [selectedRecordId, setSelectedRecordId] = useState(null);
-    const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
     const [isSorted, setIsSorted] = useState(false);
     const [editingRecordId, setEditingRecordId] = useState(null);
     const [editedContent, setEditedContent] = useState("");

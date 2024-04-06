@@ -1,6 +1,18 @@
 :root {
+    /* Default theme (dark) */
     --light-color: rgba(255, 255, 255, 0.3);
-    --dark-color: rgba(0, 0, 0, 0.1);
+    --dark-color: rgba(20, 20, 20, 0.1);
     --light-text-color: rgba(245, 245, 245, 1);
-    --dark-text-color: rgb(20, 20, 20);
+    // --dark-text-color: rgb(20, 20, 20);
+
+    /*FontSize*/
+    --font-size-regular: 22px;
+}
+
+/* Light theme overrides */
+.dark-theme {
+    --light-color: rgba(20, 20, 20, 0.3);
+    --dark-color: rgba(255, 255, 255, 0.1);
+    --light-text-color: rgba(20, 20, 20, 1);
+    // --dark-text-color: rgb(20, 20, 20);
 }

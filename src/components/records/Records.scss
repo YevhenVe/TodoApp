@@ -8,7 +8,7 @@
             width: calc(100% - 35px);
             outline: none;
             border: none;
-            border-bottom: 1px solid var(--light-text-color);
+            border-bottom: 1px solid var(--light-color);
             background: transparent;
             margin-bottom: 25px;
             font-size: 18px;
@@ -69,7 +69,7 @@
             justify-content: space-between;
             margin: 0 10px 10px 10px;
             color: var(--light-text-color);
-            border-bottom: 1px solid var(--light-text-color);
+            border-bottom: 1px solid var(--light-color);
             transition: all 100ms ease-in-out;
             .record-text {
                 margin-right: 10px;
@@ -78,7 +78,6 @@
                 .record-timestamp {
                     font-weight: 200;
                     font-size: 14px;
-                    text-decoration: underline;
                 }
             }
             &:hover {
