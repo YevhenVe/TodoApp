@@ -13,7 +13,7 @@ const ImageUploadProgress = () => {
                     <span>Background</span> <span>{progress}%</span>
                 </div>
             )}
-            {!uploadingUserImage && (
+            {uploadingUserImage && (
                 <div className="image-upload-progress-wrapper">
                     <span>User image</span> <span>{userProgress}%</span>
                 </div>
