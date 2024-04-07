@@ -157,7 +157,7 @@ const UserImageUpload = () => {
                         icon={<RemoveUserImageIcon />}
                         key={image?.id}
                     />
-                )}{" "}
+                )}
             </div>
             {removeImageConfirmation && (
                 <RemoveConfirmation>

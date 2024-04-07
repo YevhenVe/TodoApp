@@ -3,11 +3,10 @@ import { UserContext, ChangeStyleContext } from "context/Context";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
-import ImageList from "../../components/imageList/ImageList";
 import UsersData from "../../components/usersData/UsersData";
-import "./Account.scss";
+import "./PersonalAccountPage.scss";
 
-const Account = () => {
+const PersonalAccountPage = () => {
     const { user } = useContext(UserContext);
     const { data } = useContext(ChangeStyleContext);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
@@ -39,7 +38,6 @@ const Account = () => {
                         <div className="account-content">
                             <Records />
                         </div>
-                        <ImageList />
                     </>
                 ) : (
                     <div className="wellcome-page">
@@ -52,4 +50,4 @@ const Account = () => {
     );
 };
 
-export default Account;
+export default PersonalAccountPage;

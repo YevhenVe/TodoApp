@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Signout from "../signout/Signout";
-import RemoveBg from "../removeBg/RemoveBg";
+import RemoveBackground from "../removeBackground/RemoveBackground";
 import StylesChanger from "../stylesChanger/StylesChanger";
 import { UserContext } from "context/Context";
 import CustomBackground from "../customBackground/CustomBackground";
@@ -38,7 +38,7 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
                     {role && <UserRole />}
                     <StylesChanger />
                     <CustomBackground />
-                    <RemoveBg />
+                    <RemoveBackground />
                     {role && (
                         <CustomButton
                             onClick={() => setShowAllUsers(!showAllUsers)}

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext, BackgroundContext, DdMenuContext } from "context/Context";
 import Header from "./components/header/Header";
-import DefoultBackground from "./assets/bg.jpg";
-import Account from "./pages/account/Account";
-import ImageUploadProgresss from "./components/imageUploadProgress/ImageUploadProgress";
+import DefaultBackground from "./assets/bg.jpg";
+import PersonalAccountPage from "./layouts/personalAccountPage/PersonalAccountPage";
+import ImageUploadProgress from "./components/imageUploadProgress/ImageUploadProgress";
 import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
 import "./App.scss";
 
@@ -16,7 +16,7 @@ const App = () => {
         <div
             className="app-wrapper"
             style={{
-                backgroundImage: `url(${user ? (backgroundImage ? backgroundImage : DefoultBackground) : DefoultBackground})`,
+                backgroundImage: `url(${user ? (backgroundImage ? backgroundImage : DefaultBackground) : DefaultBackground})`,
             }}
         >
             {user && <Header />}
@@ -25,9 +25,9 @@ const App = () => {
                 className={!isMenuClosed ? "menu-visible" : ""}
                 adClassName={!isMenuClosed ? "dd-menu-wrapper-visible" : ""}
             />
-            <ImageUploadProgresss />
+            <ImageUploadProgress />
             <div className="app-account-wrapper">
-                <Account />
+                <PersonalAccountPage />
             </div>
         </div>
     );

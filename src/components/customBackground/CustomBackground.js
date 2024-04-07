@@ -80,6 +80,7 @@ const CustomBackground = () => {
         }
     };
 
+    //ctrl-V
     useEffect(() => {
         const handlePaste = (event) => {
             const items = (event.clipboardData || event.originalEvent.clipboardData).items;
@@ -96,6 +97,7 @@ const CustomBackground = () => {
         };
     }, [previewUrl]);
 
+    //click Enter to apply
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "Enter") {

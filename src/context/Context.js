@@ -19,7 +19,7 @@ export const ContextProvider = (props) => {
     const [allUsersData, setAllUsersData] = useState(null);
     const [showAllUsers, setShowAllUsers] = useState(false);
 
-    //BackgroundContext
+    //BackgroundContext + (remove background)
     const [images, setImages] = useState([]);
     const [progress, setProgress] = useState("");
     const [uploading, setUploading] = useState(false);
@@ -41,7 +41,7 @@ export const ContextProvider = (props) => {
     const [data, setData] = useState(null);
     const [switcher, setSwitcher] = useState(null);
 
-    //DdMenuContext
+    //DropDownMenuContext
     const [isMenuClosed, setIsMenuClosed] = useState(true);
 
     //OptionContext

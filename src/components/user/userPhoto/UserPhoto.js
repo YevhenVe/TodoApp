@@ -12,16 +12,16 @@ const UserPhoto = ({ onClick }) => {
             className="user-photo-wrapper"
             onClick={onClick}
         >
-            {!uploadedUserImage ? (
+            {uploadedUserImage ? (
                 <img
-                    src={user?.photoURL}
+                    className="custom-user-image"
+                    src={uploadedUserImage}
                     alt="avatar"
                     referrerPolicy="no-referrer"
                 />
             ) : (
                 <img
-                    className="custom-user-image"
-                    src={uploadedUserImage}
+                    src={user?.photoURL}
                     alt="avatar"
                     referrerPolicy="no-referrer"
                 />

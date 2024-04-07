@@ -6,9 +6,9 @@ import { database, storage } from "../../Firebase";
 import { UserContext, BackgroundContext } from "context/Context";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import CustomButton from "../customButton/CustomButton";
-import "./RemoveBg.scss";
+import "./RemoveBackground.scss";
 
-const RemoveBg = () => {
+const RemoveBackground = () => {
     const [removeImageConfirmation, setRemoveImageConfirmation] = useState(false);
     const { images } = useContext(BackgroundContext);
     const { user } = useContext(UserContext);
@@ -61,4 +61,4 @@ const RemoveBg = () => {
     );
 };
 
-export default RemoveBg;
+export default RemoveBackground;
