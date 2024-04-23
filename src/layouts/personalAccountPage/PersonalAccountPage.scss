@@ -43,6 +43,9 @@
         }
     }
     .fixed-account-content {
+        @media screen and (max-width: 800px) {
+            padding-top: 30px;
+        }
         .time {
             font-size: calc(60px + 20 * (100vw - 320px) / 880);
             font-weight: 600;

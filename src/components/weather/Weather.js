@@ -30,12 +30,11 @@ const Weather = () => {
             {weatherData && (
                 <>
                     <div className="weather-city-name">{weatherData.name}</div>
-                    {/* <p>{weatherData.weather[0].description}</p> */}
                     <div className="temp-box">
                         <div>{Math.round(weatherData.main.temp)} °C</div>
                         <img
-                            src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                            alt="Weather icon"
+                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                            alt={weatherData.weather[0].description}
                         />
                     </div>
                 </>

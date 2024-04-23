@@ -13,6 +13,8 @@ import "./DropDownMenu.scss";
 const DropDownMenu = ({ className, adClassName, onClick }) => {
     const { user, setRole, role, showAllUsers, setShowAllUsers } = useContext(UserContext);
 
+    const isIOSDevice = () => /iPad|iPhone|iPod/i.test(navigator.userAgent);
+
     useEffect(() => {
         const handleChange = (snapshot) => {
             setRole(snapshot.val());
@@ -30,7 +32,7 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
                 className={`dd-menu-wrapper ${adClassName}`}
                 onClick={onClick}
             />
-            <div className={`menu-hidden ${className}`}>
+            <div className={`menu-hidden ${className} ${isIOSDevice() ? "isIOSDevice" : ""}`}>
                 <div className="menu-wrapper">
                     <UserImageUpload />
                     <div className="user-name">{user?.displayName}</div>

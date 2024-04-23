@@ -3,6 +3,8 @@
     --light-color: rgba(255, 255, 255, 0.3);
     --dark-color: rgba(20, 20, 20, 0.1);
     --light-text-color: rgba(245, 245, 245, 1);
+    --ios-light-color: rgba(255, 255, 255, 1);
+    --ios-dark-color: rgba(47, 47, 47, 1);
     // --dark-text-color: rgb(20, 20, 20);
 
     /*FontSize*/
@@ -14,5 +16,7 @@
     --light-color: rgba(20, 20, 20, 0.3);
     --dark-color: rgba(255, 255, 255, 0.1);
     --light-text-color: rgba(20, 20, 20, 1);
+    --ios-light-color: rgb(47, 47, 47);
+    --ios-dark-color: rgba(255, 255, 255, 1);
     // --dark-text-color: rgb(20, 20, 20);
 }
