@@ -20,6 +20,7 @@ const Records = () => {
     const [isSorted, setIsSorted] = useState(false);
     const [editingRecordId, setEditingRecordId] = useState(null);
     const [editedContent, setEditedContent] = useState("");
+    const [searchInput, setSearchInput] = useState("");
 
     const startEditing = (recordId, currentContent) => {
         setEditingRecordId(recordId);
@@ -127,8 +128,20 @@ const Records = () => {
 
     const sortedRecords = [...records].sort((a, b) => (isSorted ? new Date(b.timestamp) - new Date(a.timestamp) : a.checked ? 1 : -1));
 
+    // Filter records by search input
+    const filterRecordsBySearchInput = (records) => {
+        return records.filter((record) => record.content.toLowerCase().includes(searchInput.toLowerCase()));
+    };
+    const filteredRecords = filterRecordsBySearchInput(sortedRecords);
+
     return (
         <div className="records-wrapper">
+            <input
+                className="search-input"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Search..."
+            />
             <div className="options">
                 <RecordsOptions />
             </div>
@@ -160,7 +173,7 @@ const Records = () => {
                 )}
             </div>
             <div className="records">
-                {sortedRecords.map((record) => (
+                {filteredRecords.map((record) => (
                     <div
                         key={record.id}
                         className={`record ${record.checked ? "record-done" : ""}`}

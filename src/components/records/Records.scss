@@ -119,4 +119,16 @@
         padding: 10px 25px 0 25px;
         width: 100%;
     }
+    .search-input {
+        width: 94.5%;
+        padding: 17px 15px;
+        border-radius: 15px;
+        background-color: transparent;
+        border: 1px solid var(--light-color);
+        margin: 10px 0;
+        color: var(--light-text-color);
+        &:focus {
+            outline: none;
+        }
+    }
 }
