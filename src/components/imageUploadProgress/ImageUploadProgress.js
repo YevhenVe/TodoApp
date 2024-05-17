@@ -10,7 +10,13 @@ const ImageUploadProgress = () => {
         <>
             {uploading && (
                 <div className="image-upload-progress-wrapper">
-                    <span>Background</span> <span>{progress}%</span>
+                    <div className="progress-label">Background</div>
+                    <div
+                        className="progress-bar"
+                        style={{ width: `${progress}%` }}
+                    >
+                        <p>{progress}%</p>
+                    </div>
                 </div>
             )}
             {uploadingUserImage && (
