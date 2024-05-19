@@ -11,6 +11,7 @@ export const OptionContext = createContext();
 export const RemoveConfirmContext = createContext();
 export const ThemeColorContext = createContext();
 export const UserImageContext = createContext();
+export const ImageGallery = createContext();
 
 export const ContextProvider = (props) => {
     //UserContext
@@ -94,6 +95,10 @@ export const ContextProvider = (props) => {
         }
     };
 
+    //image gallery states
+    const [inputLink, setInputLink] = useState("");
+    const [links, setLinks] = useState([]);
+
     return (
         <UserContext.Provider value={{ user, setUser, role, setRole, allUsersData, setAllUsersData, showAllUsers, setShowAllUsers }}>
             <BackgroundContext.Provider value={{ images, setImages, deleteImage, progress, setProgress, uploading, setUploading, backgroundImage }}>
@@ -105,7 +110,7 @@ export const ContextProvider = (props) => {
                                     <UserImageContext.Provider
                                         value={{ userImages, setUserImages, deleteUserImage, userProgress, setUserProgress, uploadingUserImage, setUploadingUserImage, uploadedUserImage }}
                                     >
-                                        {props.children}
+                                        <ImageGallery.Provider value={{ inputLink, setInputLink, links, setLinks }}>{props.children}</ImageGallery.Provider>
                                     </UserImageContext.Provider>
                                 </ThemeColorContext.Provider>
                             </RemoveConfirmContext.Provider>
