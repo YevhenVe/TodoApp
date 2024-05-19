@@ -2,16 +2,19 @@ import React, { useContext, useEffect } from "react";
 import Signout from "../signout/Signout";
 import RemoveBackground from "../removeBackground/RemoveBackground";
 import StylesChanger from "../stylesChanger/StylesChanger";
-import { UserContext } from "context/Context";
+import { DdMenuContext, UserContext } from "context/Context";
+import { ReactComponent as GalleryIcon } from "../../assets/gallery.svg";
 import CustomBackground from "../customBackground/CustomBackground";
 import UserImageUpload from "../userImageUpload/userImageUpload";
 import CustomButton from "../customButton/CustomButton";
 import UserRole from "../userRole/UserRole";
 import { getDatabase, ref, onValue } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 import "./DropDownMenu.scss";
 
 const DropDownMenu = ({ className, adClassName, onClick }) => {
     const { user, setRole, role, showAllUsers, setShowAllUsers } = useContext(UserContext);
+    const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
 
     const isIOSDevice = () => /iPad|iPhone|iPod/i.test(navigator.userAgent);
 
@@ -25,6 +28,16 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
             unsubscribe();
         };
     }, [setRole, user]);
+
+    const navigate = useNavigate();
+    const handleClick = () => {
+        if (user?.uid) {
+            navigate(`/gallery/${user.uid}`);
+            setIsMenuClosed(true);
+        } else {
+            console.error("User ID is not available");
+        }
+    };
 
     return (
         <>
@@ -41,6 +54,11 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
                     <StylesChanger />
                     <CustomBackground />
                     <RemoveBackground />
+                    <CustomButton
+                        onClick={handleClick}
+                        label="My Gallery"
+                        icon={<GalleryIcon />}
+                    />
                     {role && (
                         <CustomButton
                             onClick={() => setShowAllUsers(!showAllUsers)}
