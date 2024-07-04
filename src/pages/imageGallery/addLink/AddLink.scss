@@ -1,11 +1,22 @@
 .add-link-wrapper {
     width: 100%;
-    max-width: 660px;
+    max-width: 1200px;
+    overflow-y: hidden;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (max-width: 800px) {
+        padding: 0 0px;
+    }
     .top-section-box {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 45px;
+        position: fixed;
+        max-width: 800px;
+        width: 100%;
         .input-links {
             min-width: 200px;
             width: 100%;
@@ -19,10 +30,13 @@
         }
     }
     .gallery-image-wrapper {
+        margin-top: 60px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        overflow: auto;
+        height: calc(100vh - 200px);
         .gallery-image-link {
             position: relative;
             flex: 0 0 33.3333%;

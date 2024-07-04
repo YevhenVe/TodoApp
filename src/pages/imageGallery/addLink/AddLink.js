@@ -105,7 +105,7 @@ const AddLink = () => {
                     className="input-links"
                     value={inputLink}
                     onChange={(e) => setInputLink(e.target.value)}
-                    placeholder="Type your text here"
+                    placeholder="Add your link here"
                 />
                 <CustomButton
                     className={`set-item ${!inputLink ? "disabled" : ""}`}

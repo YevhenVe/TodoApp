@@ -5,6 +5,7 @@ import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
 import UsersData from "../../components/usersData/UsersData";
 import "./PersonalAccountPage.scss";
+import Parser from "components/parser/Parser";
 
 const PersonalAccountPage = () => {
     const { user } = useContext(UserContext);
@@ -28,6 +29,7 @@ const PersonalAccountPage = () => {
                     <>
                         <div className="fixed-account-content">
                             <UsersData />
+                            {/* <Parser /> */}
                             <div className="time">{currentTime}</div>
                             <div className="current-date">Today is: {dayOfWeek}</div>
                             <div className="current-date">
