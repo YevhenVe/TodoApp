@@ -5,6 +5,9 @@ import DefaultBackground from "./assets/bg.jpg";
 import PersonalAccountPage from "./layouts/personalAccountPage/PersonalAccountPage";
 import ImageUploadProgress from "./components/imageUploadProgress/ImageUploadProgress";
 import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ImageGallery from "pages/imageGallery/ImageGallery";
+import ProtectedRoute from "components/protectedRoute/ProtectedRoute";
 import "./App.scss";
 
 const App = () => {
@@ -13,23 +16,35 @@ const App = () => {
     const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
 
     return (
-        <div
-            className="app-wrapper"
-            style={{
-                backgroundImage: `url(${user ? (backgroundImage ? backgroundImage : DefaultBackground) : DefaultBackground})`,
-            }}
-        >
-            {user && <Header />}
-            <DropDownMenu
-                onClick={() => setIsMenuClosed(true)}
-                className={!isMenuClosed ? "menu-visible" : ""}
-                adClassName={!isMenuClosed ? "dd-menu-wrapper-visible" : ""}
-            />
-            <ImageUploadProgress />
-            <div className="app-account-wrapper">
-                <PersonalAccountPage />
+        <Router>
+            <div
+                className="app-wrapper"
+                style={{
+                    backgroundImage: `url(${user ? (backgroundImage ? backgroundImage : DefaultBackground) : DefaultBackground})`,
+                }}
+            >
+                {user && <Header />}
+                <DropDownMenu
+                    onClick={() => setIsMenuClosed(true)}
+                    className={!isMenuClosed ? "menu-visible" : ""}
+                    adClassName={!isMenuClosed ? "dd-menu-wrapper-visible" : ""}
+                />
+                <ImageUploadProgress />
+                <div className="app-account-wrapper">
+                    <PersonalAccountPage />
+                </div>
             </div>
-        </div>
+            <Routes>
+                <Route
+                    path={`/gallery/${user?.uid}`}
+                    element={
+                        <ProtectedRoute>
+                            <ImageGallery />
+                        </ProtectedRoute>
+                    }
+                />
+            </Routes>
+        </Router>
     );
 };
 
