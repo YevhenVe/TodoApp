@@ -8,6 +8,7 @@ import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImageGallery from "pages/imageGallery/ImageGallery";
 import ProtectedRoute from "components/protectedRoute/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
 import "./App.scss";
 
 const App = () => {
@@ -40,6 +41,10 @@ const App = () => {
                     element={
                         <ProtectedRoute>
                             <ImageGallery />
+                            <ToastContainer
+                                autoClose={2000}
+                                position="top-center"
+                            />
                         </ProtectedRoute>
                     }
                 />

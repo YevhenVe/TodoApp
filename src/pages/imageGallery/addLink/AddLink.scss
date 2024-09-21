@@ -1,13 +1,14 @@
 .add-link-wrapper {
     width: 100%;
-    max-width: 660px;
     .top-section-box {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 45px;
+        width: 100%;
         .input-links {
             min-width: 200px;
+            max-width: 600px;
             width: 100%;
             padding: 10px 20px;
             border: none;
@@ -19,16 +20,19 @@
         }
     }
     .gallery-image-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Колонки адаптируются */
+        max-width: calc(200px * 5 + 40px); /* Максимум 5 колонок с учетом отступов */
+        margin: auto;
         .gallery-image-link {
             position: relative;
-            flex: 0 0 33.3333%;
-            max-width: 200px;
+            display: flex; /* Используем Flexbox */
+            justify-content: center; /* Центрирование по горизонтали */
+            align-items: center; /* Центрирование по вертикали */
+            width: 200px;
             height: 200px;
-            margin: 10px;
+            margin: auto;
             &:hover > .gallery-image {
                 cursor: pointer;
                 scale: 1.1;
@@ -41,7 +45,7 @@
                 width: 200px;
                 height: 200px;
                 object-fit: cover;
-                border-radius: 30px;
+                border-radius: 20px;
                 border: 1px solid var(--dark-color);
                 transition: all 0.3s;
             }
@@ -61,6 +65,15 @@
                 opacity: 0;
                 cursor: pointer;
             }
+        }
+    }
+    .add-more-btn-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        .load-more-btn {
+            margin: auto;
         }
     }
 }

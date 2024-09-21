@@ -1,19 +1,30 @@
-import React, { useContext, useEffect } from "react";
-import { ref, push, remove, onValue, get } from "firebase/database";
+import React, { useContext, useEffect, useState } from "react";
+import { ref, push, remove, onValue, get, query, limitToFirst, orderByKey, startAt } from "firebase/database";
 import { ref as storageRef, deleteObject } from "firebase/storage";
 import { database, storage } from "../../../Firebase";
 import { UserContext, ImageGallery } from "context/Context";
 import CustomButton from "components/customButton/CustomButton";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AddLink.scss";
 
 const AddLink = () => {
-    const { user } = useContext(UserContext); // Get the current user from UserContext
-    const { inputLink, setInputLink, links, setLinks } = useContext(ImageGallery); // Get and set link-related state from ImageGallery context
+    const { user } = useContext(UserContext);
+    const { inputLink, setInputLink, links, setLinks } = useContext(ImageGallery);
+    const [loadedImages, setLoadedImages] = useState(10); // Default number of images to load
+    const [isLoading, setIsLoading] = useState(false); // Loading state
 
-    // Load user's links from Firebase database when the user changes
+    // Load images
     useEffect(() => {
         if (user) {
-            const userLinksRef = ref(database, "links/" + user.uid);
+            loadImages();
+        }
+    }, [user, loadedImages]);
+
+    // Load images
+    const loadImages = () => {
+        if (user) {
+            const userLinksRef = query(ref(database, "links/" + user.uid), orderByKey(), limitToFirst(loadedImages));
             onValue(userLinksRef, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
@@ -21,34 +32,38 @@ const AddLink = () => {
                         id: key,
                         link: value.link,
                     }));
-                    setLinks(linksArray); // Update state with links array
+                    setLinks(linksArray);
                 } else {
-                    setLinks([]); // Set links to an empty array if no data
+                    setLinks([]);
                 }
             });
         }
-    }, [user]);
-
-    // Function to add a new link to the database
+    };
+    // Add link
     const addLink = () => {
         if (user) {
             const userLinksRef = ref(database, "links/" + user.uid);
             push(userLinksRef, {
                 link: inputLink,
-            });
-            setInputLink(""); // Clear the input field after adding the link
+            })
+                .then(() => {
+                    toast.success("Image added successfully!");
+                    setInputLink("");
+                })
+                .catch(() => {
+                    console.error("Failed to add the link.");
+                });
         } else {
-            console.log("error");
+            toast.error("No user found.");
         }
     };
 
-    // Function to save an image URL to the database, deleting the previous one if it exists
+    // Save image to database
     const saveImageToDatabase = async (imageUrl) => {
         if (user) {
             const userImagesRef = ref(database, "images/" + user.uid);
             const imagesSnapshot = await get(userImagesRef);
             const imagesData = imagesSnapshot.val();
-
             if (imagesData) {
                 const imagesList = Object.keys(imagesData).map((key) => ({
                     id: key,
@@ -57,45 +72,54 @@ const AddLink = () => {
 
                 if (imagesList.length > 0) {
                     const lastImage = imagesList[imagesList.length - 1];
-                    await deleteImage(lastImage.id, lastImage.url); // Delete the last image before adding a new one
+                    await deleteImage(lastImage.id, lastImage.url);
                 }
             }
-
             push(userImagesRef, {
                 url: imageUrl,
-            });
+            })
+                .then(() => {
+                    toast.success("Image applied successfully!");
+                })
+                .catch(() => {
+                    console.error("Failed to save image.");
+                });
         } else {
-            console.log("error");
+            toast.error("No user found.");
         }
     };
 
-    // Function to delete an image from the database and storage
+    //  Delete image
     const deleteImage = async (imageId, imageUrl) => {
-        // Remove the image reference from the database
         await remove(ref(database, `images/${user.uid}/${imageId}`));
-        // Delete the image from Firebase storage
         try {
             await deleteObject(storageRef(storage, imageUrl));
-            console.log("Image deleted from storage");
+            console.success("Image deleted successfully!");
         } catch (error) {
-            console.error("Error deleting image from storage", error);
+            console.error("Error deleting image from storage.");
         }
     };
 
-    //Deletes a link from the database.
+    // Delete link
     const deleteLink = async (linkId) => {
         if (user) {
             try {
-                // Remove the link from the database
                 const linkRef = ref(database, `links/${user.uid}/${linkId}`);
                 await remove(linkRef);
-                console.log("Link deleted successfully");
+                toast.success("Image deleted successfully!");
             } catch (error) {
-                console.error("Error deleting link", error);
+                toast.error("Error deleting link.");
             }
         } else {
-            console.log("error");
+            toast.error("No user found.");
         }
+    };
+
+    // Load more images
+    const loadMoreImages = () => {
+        setIsLoading(true);
+        setLoadedImages((prev) => prev + 10); // Adding 10 more images
+        setIsLoading(false);
     };
 
     return (
@@ -113,7 +137,7 @@ const AddLink = () => {
                     onClick={() => {
                         if (inputLink) {
                             addLink();
-                        } else return;
+                        }
                     }}
                 />
             </div>
@@ -134,13 +158,22 @@ const AddLink = () => {
                         />
                         <div
                             className="remove-link"
-                            onClick={() => deleteLink(url.id, url.link)}
+                            onClick={() => deleteLink(url.id)}
                             title="Remove image"
                         >
                             ✖
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="add-more-btn-wrapper">
+                {links.length >= loadedImages && (
+                    <CustomButton
+                        className="load-more-btn"
+                        label={isLoading ? "Loading..." : "Load More"}
+                        onClick={loadMoreImages}
+                    />
+                )}
             </div>
         </div>
     );
