@@ -9,13 +9,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImageGallery from "pages/imageGallery/ImageGallery";
 import ProtectedRoute from "components/protectedRoute/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
+import { ThemeColorContext } from "context/Context";
 import "./App.scss";
 
 const App = () => {
     const { backgroundImage } = useContext(BackgroundContext);
     const { user } = useContext(UserContext);
     const { isMenuClosed, setIsMenuClosed } = useContext(DdMenuContext);
-
+    const { theme } = useContext(ThemeColorContext);
     return (
         <Router>
             <div
@@ -44,6 +45,10 @@ const App = () => {
                             <ToastContainer
                                 autoClose={2000}
                                 position="top-center"
+                                theme={theme ? "dark" : "light"}
+                                closeOnClick
+                                pauseOnHover
+                                draggable
                             />
                         </ProtectedRoute>
                     }

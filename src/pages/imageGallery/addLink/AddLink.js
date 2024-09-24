@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ref, push, remove, onValue, get, query, limitToFirst, orderByKey, startAt } from "firebase/database";
+import { ref, push, remove, onValue, get, query, limitToFirst, orderByKey } from "firebase/database";
 import { ref as storageRef, deleteObject } from "firebase/storage";
 import { database, storage } from "../../../Firebase";
+import { Tooltip } from "@mui/material";
 import { UserContext, ImageGallery } from "context/Context";
 import CustomButton from "components/customButton/CustomButton";
 import { toast } from "react-toastify";
@@ -147,22 +148,41 @@ const AddLink = () => {
                         key={url.id}
                         className="gallery-image-link"
                     >
-                        <img
-                            className="gallery-image"
-                            src={url.link}
-                            alt="gallery media"
-                            onClick={() => {
-                                deleteImage(url.id, url.link);
-                                saveImageToDatabase(url.link);
+                        <Tooltip
+                            componentsProps={{
+                                tooltip: {
+                                    sx: {
+                                        bgcolor: "var(--ios-dark-color)",
+                                        "& .MuiTooltip-arrow": {
+                                            color: "var(--ios-dark-color)",
+                                        },
+                                        borderRadius: "30px",
+                                        boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.75)",
+                                    },
+                                },
                             }}
-                        />
-                        <div
-                            className="remove-link"
-                            onClick={() => deleteLink(url.id)}
-                            title="Remove image"
+                            title={
+                                <div
+                                    className="remove-link"
+                                    onClick={() => deleteLink(url.id)}
+                                    title="Remove image"
+                                >
+                                    🗑️
+                                </div>
+                            }
+                            placement="top"
+                            arrow
                         >
-                            ✖
-                        </div>
+                            <img
+                                className="gallery-image"
+                                src={url.link}
+                                alt="gallery media"
+                                onClick={() => {
+                                    deleteImage(url.id, url.link);
+                                    saveImageToDatabase(url.link);
+                                }}
+                            />
+                        </Tooltip>
                     </div>
                 ))}
             </div>
