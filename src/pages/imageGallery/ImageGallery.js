@@ -8,7 +8,7 @@ const ImageGallery = () => {
     return (
         <div className="image-gallery-wrapper">
             <div className="gallery-button-box">
-                <div>ImageGallery</div>
+                <div className="gallery-title">Personal image gallery</div>
                 <div
                     className="close-gallery"
                     onClick={() => navigate(-1)}

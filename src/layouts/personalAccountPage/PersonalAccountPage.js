@@ -41,7 +41,7 @@ const PersonalAccountPage = () => {
                     </>
                 ) : (
                     <div className="wellcome-page">
-                        <div className="wellcome-text">Hello unknown user, please</div>
+                        <div className="wellcome-text">Hello friend, please</div>
                         <Auth />
                     </div>
                 )}

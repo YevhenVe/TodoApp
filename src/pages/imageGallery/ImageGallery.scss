@@ -22,6 +22,11 @@
         max-width: 300px;
         margin-bottom: 50px;
         text-align: center;
+        .gallery-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--light-text-color);
+        }
         .close-gallery {
             position: absolute;
             right: 40px;
