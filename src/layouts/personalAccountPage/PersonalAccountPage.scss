@@ -38,11 +38,14 @@
     }
     .wellcome-page {
         font-size: 1.6em;
+
         .wellcome-text {
             margin-bottom: 20px;
+            color: var(--ios-dark-color);
         }
     }
     .fixed-account-content {
+        filter: drop-shadow(0 0 10px var(--ios-dark-color));
         @media screen and (max-width: 800px) {
             padding-top: 30px;
         }
