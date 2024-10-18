@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserContext, BackgroundContext, DdMenuContext } from "context/Context";
+import { ToastContainer } from "react-toastify";
+import { ThemeColorContext } from "context/Context";
 import Header from "./components/header/Header";
 import DefaultBackground from "./assets/bg.jpg";
 import PersonalAccountPage from "./layouts/personalAccountPage/PersonalAccountPage";
 import ImageUploadProgress from "./components/imageUploadProgress/ImageUploadProgress";
 import DropDownMenu from "./components/dropDownMenu/DropDownMenu";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImageGallery from "pages/imageGallery/ImageGallery";
 import ProtectedRoute from "components/protectedRoute/ProtectedRoute";
-import { ToastContainer } from "react-toastify";
-import { ThemeColorContext } from "context/Context";
 import "./App.scss";
 
 const App = () => {
@@ -45,7 +45,7 @@ const App = () => {
                             <ToastContainer
                                 autoClose={2000}
                                 position="top-center"
-                                theme={theme ? "dark" : "light"}
+                                theme={theme ? "light" : "dark"}
                                 closeOnClick
                                 pauseOnHover
                                 draggable
