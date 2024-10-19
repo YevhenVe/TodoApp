@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { database } from "../../Firebase";
 import { ref, onValue, push, remove, update } from "firebase/database";
-import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.svg";
-import { ReactComponent as DoneIcon } from "../../assets/done.svg";
-import { ReactComponent as EditIcon } from "../../assets/edit.svg";
 import { UserContext, OptionContext } from "context/Context";
+import RecordList from "./RecordList";
 import CustomButton from "../customButton/CustomButton";
-import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import RecordsOptions from "./recordsOptions/RecordsOptions";
 import "./Records.scss";
 
@@ -172,72 +169,21 @@ const Records = () => {
                     </p>
                 )}
             </div>
-            <div className="records">
-                {filteredRecords.map((record) => (
-                    <div
-                        key={record.id}
-                        className={`record ${record.checked ? "record-done" : ""}`}
-                    >
-                        {editingRecordId === record.id ? (
-                            <input
-                                className="edit-input"
-                                value={editedContent}
-                                onChange={(e) => setEditedContent(e.target.value)}
-                                onKeyPress={(e) => {
-                                    if (e.key === "Enter") submitEdit(record.id);
-                                }}
-                            />
-                        ) : (
-                            <p className="record-text">
-                                <span className="record-timestamp">{new Date(record.timestamp).toLocaleString()}</span>
-                                <br />
-                                <span>{record.content}</span>
-                            </p>
-                        )}
-                        <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
-                            <CustomButton
-                                className="check-record-text"
-                                onClick={() => handleCheckRecord(record.id, !record.checked)}
-                                icon={editingRecordId === record.id ? <></> : <DoneIcon />}
-                            />
-                            {!record.checked && (
-                                <CustomButton
-                                    className="edit-record-text"
-                                    onClick={editingRecordId === record.id ? () => submitEdit(record.id) : () => startEditing(record.id, record.content)}
-                                    icon={editingRecordId === record.id ? <DoneIcon /> : <EditIcon />}
-                                />
-                            )}
-                            <CustomButton
-                                className="remove-record-text"
-                                onClick={() => {
-                                    setSelectedRecordId(record.id);
-                                    setRemoveRecordConfirmation(true);
-                                }}
-                                icon={<RemoveTextIcon />}
-                            />
-                        </div>
-                    </div>
-                ))}
-                {removeRecordConfirmation && (
-                    <RemoveConfirmation>
-                        <CustomButton
-                            className="remove-yes"
-                            onClick={() => {
-                                if (selectedRecordId) {
-                                    deleteRecord(selectedRecordId);
-                                    setRemoveRecordConfirmation(false);
-                                }
-                            }}
-                            label="YES"
-                        />
-                        <CustomButton
-                            className="remove-no"
-                            onClick={() => setRemoveRecordConfirmation(false)}
-                            label="NO"
-                        />
-                    </RemoveConfirmation>
-                )}
-            </div>
+
+            <RecordList
+                filteredRecords={filteredRecords}
+                editingRecordId={editingRecordId}
+                editedContent={editedContent}
+                setEditedContent={setEditedContent}
+                handleCheckRecord={handleCheckRecord}
+                submitEdit={submitEdit}
+                removeRecordConfirmation={removeRecordConfirmation}
+                setRemoveRecordConfirmation={setRemoveRecordConfirmation}
+                setSelectedRecordId={setSelectedRecordId}
+                startEditing={startEditing}
+                selectedRecordId={selectedRecordId}
+                deleteRecord={deleteRecord}
+            />
         </div>
     );
 };
