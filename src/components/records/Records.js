@@ -5,18 +5,13 @@ import { ReactComponent as RemoveTextIcon } from "../../assets/removeTextIcon.sv
 import { ReactComponent as DoneIcon } from "../../assets/done.svg";
 import { ReactComponent as EditIcon } from "../../assets/edit.svg";
 import { UserContext, OptionContext } from "context/Context";
-import { ThemeColorContext } from "context/Context";
-import { ToastContainer, toast } from "react-toastify";
-import { Tooltip } from "@mui/material";
 import CustomButton from "../customButton/CustomButton";
-import "react-toastify/dist/ReactToastify.css";
 import RemoveConfirmation from "../removeConfirmation/RemoveConfirmation";
 import RecordsOptions from "./recordsOptions/RecordsOptions";
 import "./Records.scss";
 
 const Records = () => {
     const { user } = useContext(UserContext);
-    const { theme } = useContext(ThemeColorContext);
     const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
     const [records, setRecords] = useState([]);
     const [checkedRecord, setCheckedRecord] = useState(null);
@@ -26,9 +21,7 @@ const Records = () => {
     const [editingRecordId, setEditingRecordId] = useState(null);
     const [editedContent, setEditedContent] = useState("");
     const [searchInput, setSearchInput] = useState("");
-    const [notificationDate, setNotificationDate] = useState("");
-    const [notificationTime, setNotificationTime] = useState("");
-    const [open, setOpen] = useState(false);
+
     const startEditing = (recordId, currentContent) => {
         setEditingRecordId(recordId);
         setEditedContent(currentContent);
@@ -83,16 +76,12 @@ const Records = () => {
     const addRecord = () => {
         if (user) {
             const userRecordsRef = ref(database, "records/" + user.uid);
-            const notificationTimestamp = new Date(`${notificationDate}T${notificationTime}`).getTime(); // Преобразуем дату и время в timestamp
             push(userRecordsRef, {
                 content: input,
                 timestamp: Date.now(),
                 checked: false,
-                notificationTime: notificationTimestamp, // Сохраняем время уведомления
             });
             setInput("");
-            setNotificationDate("");
-            setNotificationTime("");
         } else {
             console.log("Sign in with Google to add the record");
         }
@@ -122,23 +111,15 @@ const Records = () => {
     //Set Record by clicking "Enter" button
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
-            if (input && notificationDate && notificationTime) {
+            if (input) {
                 addRecord();
                 setSelectedOption("");
-            }
-            // Show notification if notificationDate or notificationTime is empty
-            else if (!notificationDate || !notificationTime) {
-                toast.error("Please set the notification date and time");
-            }
-            // Check if input is empty
-            if (!input) {
-                toast.error("Please enter the text of the record");
-            }
+            } else return;
         }
     };
 
-    // Focus on input when selectedOption changes
     useEffect(() => {
+        // Focus on input when selectedOption changes
         const inputElement = document.querySelector(".input-records");
         if (inputElement && selectedOption) {
             inputElement.focus();
@@ -153,60 +134,8 @@ const Records = () => {
     };
     const filteredRecords = filterRecordsBySearchInput(sortedRecords);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const now = Date.now(); // Current time
-            records.forEach((record) => {
-                if (record.notificationTime && record.notificationTime <= now && !record.notified) {
-                    showNotification(record.content); // Show notification
-                    markAsNotified(record.id); // Check as notified
-                }
-            });
-        }, 60000); // Check every minute
-        return () => clearInterval(interval);
-    }, [records]);
-
-    // Function to show notification
-    const showNotification = (message) => {
-        if (Notification.permission === "granted") {
-            new Notification("Reminder", {
-                body: message,
-            });
-        }
-    };
-
-    // Set record as notified
-    const markAsNotified = (recordId) => {
-        const recordRef = ref(database, "records/" + user.uid + "/" + recordId);
-        update(recordRef, { notified: true });
-    };
-
-    // Request permission for notifications
-    useEffect(() => {
-        if (Notification.permission !== "granted") {
-            Notification.requestPermission();
-        }
-    }, []);
-
-    // Open/close date picker
-    const handleClick = () => {
-        setOpen(!open);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <div className="records-wrapper">
-            <ToastContainer
-                autoClose={4000}
-                position="top-center"
-                theme={theme ? "light" : "dark"}
-                closeOnClick
-                pauseOnHover
-                draggable
-            />
             <input
                 className="search-input"
                 value={searchInput}
@@ -224,60 +153,16 @@ const Records = () => {
                     onKeyPress={handleKeyPress}
                     placeholder="Type your text here"
                 />
-                <div className="input-buttons-box">
-                    <div className="data-and-time-picker">
-                        <Tooltip
-                            open={open}
-                            onClose={handleClose}
-                            disableFocusListener
-                            disableHoverListener
-                            disableTouchListener
-                            placement="top"
-                            arrow
-                            title={
-                                <div className="datapicker">
-                                    <input
-                                        type="date"
-                                        className="input-date"
-                                        value={notificationDate}
-                                        onChange={(e) => setNotificationDate(e.target.value)}
-                                    />
-
-                                    <input
-                                        type="time"
-                                        className="input-time"
-                                        value={notificationTime}
-                                        onChange={(e) => setNotificationTime(e.target.value)}
-                                    />
-                                </div>
-                            }
-                        ></Tooltip>
-                        <CustomButton
-                            label="📅"
-                            onClick={handleClick}
-                            className="set-item"
-                        />
-                    </div>
-                    <CustomButton
-                        className={`set-item ${!input || !notificationDate || !notificationTime ? "" : ""}`}
-                        label=">"
-                        onClick={() => {
-                            if (input && notificationDate && notificationTime) {
-                                addRecord();
-                                setSelectedOption("");
-                            } else {
-                                // Show notification if notificationDate or notificationTime is empty
-                                if (!notificationDate || !notificationTime) {
-                                    toast.error("Please set the notification date and time");
-                                }
-                                // Check if input is empty
-                                if (!input) {
-                                    toast.error("Please enter the text of the record");
-                                }
-                            }
-                        }}
-                    />
-                </div>
+                <CustomButton
+                    className={`set-item ${!input ? "disabled" : ""}`}
+                    label=">"
+                    onClick={() => {
+                        if (input) {
+                            addRecord();
+                            setSelectedOption("");
+                        } else return;
+                    }}
+                />
                 {records.length > 1 && (
                     <p
                         className="sort-button"
@@ -303,11 +188,11 @@ const Records = () => {
                                 }}
                             />
                         ) : (
-                            <div className="record-text">
-                                <p className="record-timestamp">Note created: {new Date(record.timestamp).toLocaleString()}</p>
-                                <p className="record-content">{record.content}</p>
-                                <p className="record-timestamp">Alarm: {record.notificationTime && <span>{new Date(record.notificationTime).toLocaleString()}</span>}</p>
-                            </div>
+                            <p className="record-text">
+                                <span className="record-timestamp">{new Date(record.timestamp).toLocaleString()}</span>
+                                <br />
+                                <span>{record.content}</span>
+                            </p>
                         )}
                         <div className={`button-box ${removeRecordConfirmation ? "disabled" : ""}`}>
                             <CustomButton
