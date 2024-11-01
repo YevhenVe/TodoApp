@@ -38,12 +38,13 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: 60%;
-            background-image: url("");
+            background-image: url("../../assets//plusIcon.svg");
+            background-size: 0%;
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(0px);
             transition: all 200ms ease-in-out;
             &:hover {
-                background-image: url("../../assets//plusIcon.svg");
+                background-size: 50%;
                 backdrop-filter: blur(5px);
                 -webkit-backdrop-filter: blur(5px);
             }
