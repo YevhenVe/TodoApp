@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "Todo App",
+    "site": "votingapp-29c2f",
     "public": "build",
     "ignore": [
       "firebase.json",
