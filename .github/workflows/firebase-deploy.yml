@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch: # Позволяет запускать вручную
 
 jobs:
     build:
@@ -37,5 +38,7 @@ jobs:
             - name: Deploy to Firebase Hosting
               env:
                   GOOGLE_APPLICATION_CREDENTIALS: $HOME/gcp-key.json
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
-              run: firebase deploy --only hosting --token $FIREBASE_TOKEN
+                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+              run: |
+                  echo "Deploying to Firebase Hosting..."
+                  firebase deploy --only hosting --token "$FIREBASE_TOKEN"
