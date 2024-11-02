@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "Privat To Do App",
     "public": "build",
     "ignore": [
       "firebase.json",
