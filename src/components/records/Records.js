@@ -11,7 +11,7 @@ const Records = () => {
     const { user } = useContext(UserContext);
     const { input, setInput, selectedOption, setSelectedOption } = useContext(OptionContext);
     const [records, setRecords] = useState([]);
-    const [checkedRecord, setCheckedRecord] = useState(null);
+    const [checkedRecord, setCheckedRecord] = useState(null); // eslint-disable-line no-unused-vars
     const [removeRecordConfirmation, setRemoveRecordConfirmation] = useState(false);
     const [selectedRecordId, setSelectedRecordId] = useState(null);
     const [isSorted, setIsSorted] = useState(false);
