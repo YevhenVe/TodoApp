@@ -26,8 +26,8 @@ const PersonalAccountPage = () => {
             <>
                 {user ? (
                     <>
+                        <UsersData />
                         <div className="fixed-account-content">
-                            <UsersData />
                             <div className="time">{currentTime}</div>
                             <div className="current-date">Today is: {dayOfWeek}</div>
                             <div className="current-date">
