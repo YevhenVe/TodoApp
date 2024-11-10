@@ -54,7 +54,7 @@ export const ContextProvider = (props) => {
     const [removeConfirmation, setRemoveConfirmation] = useState(false);
 
     //ThemeContext
-    const [theme, setTheme] = useState(true);
+    const [theme, setTheme] = useState(false);
 
     useEffect(() => {
         const handleChangeTheme = (snapshot) => {

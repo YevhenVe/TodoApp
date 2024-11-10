@@ -20,3 +20,20 @@
     --ios-dark-color: rgba(255, 255, 255, 1);
     // --dark-text-color: rgb(20, 20, 20);
 }
+
+@mixin input-styles {
+    width: 100%;
+    padding: 17px 15px;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 1px solid var(--light-color);
+    color: var(--light-text-color);
+    margin-bottom: 25px;
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: var(--light-text-color);
+        opacity: 0.5;
+    }
+}

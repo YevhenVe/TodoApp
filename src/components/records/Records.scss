@@ -4,20 +4,7 @@
     padding: 0 25px;
 
     .search-input {
-        width: 100%;
-        padding: 17px 15px;
-        border-radius: 15px;
-        background-color: transparent;
-        border: 1px solid var(--light-color);
-        color: var(--light-text-color);
-        margin-bottom: 25px;
-        &:focus {
-            outline: none;
-        }
-        &::placeholder {
-            color: var(--light-text-color);
-            opacity: 0.5;
-        }
+        @include input-styles;
     }
     .options {
         width: 100%;
