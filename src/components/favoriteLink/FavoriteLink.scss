@@ -1,0 +1,63 @@
+@import "../../StyleVariables.scss";
+
+.favorite-link-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 25px;
+    .link-input-wrapper {
+        display: flex;
+        .link-input {
+            @include input-styles;
+            margin-right: 25px;
+        }
+        .add-link-button {
+            height: 55px;
+        }
+        .disabled {
+            pointer-events: none;
+        }
+    }
+    .links-box {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        .open-add-link-button {
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+            transition: transform 300ms ease-in-out;
+            &:hover {
+                transform: rotate(180deg);
+            }
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: var(--light-text-color);
+                text-decoration: none;
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    filter: grayscale(100%) contrast(200%);
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
+.remove-link-button {
+    background: transparent;
+    border: none;
+    font-size: large;
+}

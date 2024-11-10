@@ -5,6 +5,7 @@ import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
 import UsersData from "../../components/usersData/UsersData";
 import "./PersonalAccountPage.scss";
+import FavoriteLink from "components/favoriteLink/FavoriteLink";
 
 const PersonalAccountPage = () => {
     const { user } = useContext(UserContext);
@@ -34,6 +35,7 @@ const PersonalAccountPage = () => {
                                 {dateWithoutDay} {new Date().getFullYear()}
                             </div>
                             <User />
+                            <FavoriteLink />
                         </div>
                         <div className="account-content">
                             <Records />
