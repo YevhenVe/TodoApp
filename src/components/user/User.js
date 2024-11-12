@@ -9,9 +9,9 @@ const User = () => {
     useEffect(() => {
         // Check if the user is logged in and has a displayName
         if (user && user.displayName) {
-            document.title = `${user.displayName} To Do App`;
+            document.title = `${user.displayName} Start Page`;
         } else {
-            document.title = "To Do App";
+            document.title = "Personal Start Page";
         }
     }, []);
 

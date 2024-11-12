@@ -31,29 +31,34 @@ const App = () => {
                     className={!isMenuClosed ? "menu-visible" : ""}
                     adClassName={!isMenuClosed ? "dd-menu-wrapper-visible" : ""}
                 />
-                <ImageUploadProgress />
-                <div className="app-account-wrapper">
-                    <PersonalAccountPage />
-                </div>
+                <ImageUploadProgress />{" "}
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <div className="app-account-wrapper">
+                                <PersonalAccountPage />
+                            </div>
+                        }
+                    />
+                    <Route
+                        path={`/gallery/${user?.uid}`}
+                        element={
+                            <ProtectedRoute>
+                                <ImageGallery />
+                                <ToastContainer
+                                    autoClose={2000}
+                                    position="top-center"
+                                    theme={theme ? "light" : "dark"}
+                                    closeOnClick
+                                    pauseOnHover
+                                    draggable
+                                />
+                            </ProtectedRoute>
+                        }
+                    />
+                </Routes>
             </div>
-            <Routes>
-                <Route
-                    path={`/gallery/${user?.uid}`}
-                    element={
-                        <ProtectedRoute>
-                            <ImageGallery />
-                            <ToastContainer
-                                autoClose={2000}
-                                position="top-center"
-                                theme={theme ? "light" : "dark"}
-                                closeOnClick
-                                pauseOnHover
-                                draggable
-                            />
-                        </ProtectedRoute>
-                    }
-                />
-            </Routes>
         </Router>
     );
 };
