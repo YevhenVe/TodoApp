@@ -81,27 +81,30 @@ const FavoriteLink = () => {
     return (
         <div className="favorite-link-wrapper">
             {openInput && (
-                <form
-                    onSubmit={handleAddLink}
-                    className="link-input-wrapper"
-                >
-                    <input
-                        type="text"
-                        value={newLink}
-                        onChange={(event) => setNewLink(event.target.value)}
-                        placeholder="Enter a link"
-                        className="link-input"
-                    />
+                <>
+                    <form
+                        onSubmit={handleAddLink}
+                        className="link-input-wrapper"
+                    >
+                        <input
+                            type="text"
+                            value={newLink}
+                            onChange={(event) => setNewLink(event.target.value)}
+                            placeholder="Enter a link"
+                            className="link-input"
+                        />
 
-                    <CustomButton
-                        className={`add-link-button ${!newLink && "disabled"}`}
-                        type="submit"
-                        label="Add"
-                        disabled={!newLink}
-                    />
-                </form>
+                        <CustomButton
+                            className={`add-link-button ${!newLink && "disabled"}`}
+                            type="submit"
+                            label="Add"
+                            disabled={!newLink}
+                        />
+                    </form>
+                    {error && <div className="error">{error}</div>}
+                </>
             )}
-            {error && <div className="error">{error}</div>}
+
             <div className="links-box">
                 <button
                     className="open-add-link-button"
@@ -112,6 +115,7 @@ const FavoriteLink = () => {
                 </button>
                 {links.map((link) => (
                     <Tooltip
+                        key={link.id}
                         placement="top"
                         arrow
                         title={
@@ -123,10 +127,7 @@ const FavoriteLink = () => {
                             </button>
                         }
                     >
-                        <div
-                            key={link.id}
-                            className="link-item"
-                        >
+                        <div className="link-item">
                             <a
                                 href={link.url}
                                 target="_blank"

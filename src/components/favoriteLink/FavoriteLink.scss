@@ -11,6 +11,7 @@
         .link-input {
             @include input-styles;
             margin-right: 25px;
+            margin-bottom: 5px;
         }
         .add-link-button {
             height: 55px;
@@ -21,11 +22,12 @@
     }
     .links-box {
         display: flex;
-        gap: 20px;
+        gap: 15px;
         overflow-x: auto;
         overflow-y: hidden;
+        padding-bottom: 10px;
         .open-add-link-button {
-            text-align: center;
+            padding-top: 2px;
             background-color: transparent;
             border: none;
             font-size: 25px;
@@ -41,19 +43,32 @@
             flex-direction: column;
             a {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 color: var(--light-text-color);
                 text-decoration: none;
+                font-size: 14px;
+                font-weight: 300;
+                &:hover img {
+                    filter: grayscale(0%) contrast(100%);
+                    opacity: 1;
+                }
                 img {
-                    width: 40px;
-                    height: 40px;
+                    width: 20px;
                     border-radius: 50%;
                     filter: grayscale(100%) contrast(200%);
+                    margin-right: 7px;
                     opacity: 0.5;
+                    transition: all 300ms ease-in-out;
                 }
             }
         }
+    }
+    .error {
+        text-align: left;
+        margin-bottom: 15px;
+        font-size: 14px;
+        font-weight: 300;
+        padding-left: 15px;
     }
 }
 .remove-link-button {
