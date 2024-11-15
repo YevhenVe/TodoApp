@@ -137,7 +137,7 @@ const Records = () => {
                 className="search-input"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search..."
+                placeholder="Search records..."
             />
             <div className="options">
                 <RecordsOptions />
