@@ -45,7 +45,7 @@
         }
     }
     .fixed-account-content {
-        filter: drop-shadow(0 0 10px var(--ios-dark-color));
+        filter: drop-shadow(0 0 0.5px var(--ios-dark-color));
         width: 100%;
         @media screen and (max-width: 800px) {
             padding-top: 30px;

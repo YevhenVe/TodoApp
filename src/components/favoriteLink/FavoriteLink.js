@@ -1,50 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { database, auth } from "Firebase";
+import React, { useState, useEffect, useContext } from "react";
+import CustomButton from "components/customButton/CustomButton";
+import { database } from "Firebase";
+import { UserContext } from "context/Context";
 import { Tooltip } from "@mui/material";
 import { ref, set, push, onValue, remove } from "firebase/database";
-import { onAuthStateChanged } from "firebase/auth";
 import "./FavoriteLink.scss";
-import CustomButton from "components/customButton/CustomButton";
 
 const FavoriteLink = () => {
+    const { user } = useContext(UserContext);
     const [openInput, setOpenInput] = useState(false);
     const [links, setLinks] = useState([]);
     const [newLink, setNewLink] = useState("");
-    const [userId, setUserId] = useState(null);
     const [error, setError] = useState(null);
 
+    // Effect hook to fetch links when user changes
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUserId(user.uid);
-                fetchLinks(user.uid);
-            } else {
-                setUserId(null);
-                setLinks([]);
-            }
-        });
+        if (user && user.uid) {
+            fetchLinks(user.uid);
+        } else {
+            setLinks([]);
+        }
+    }, [user]);
 
-        return () => unsubscribe();
-    }, []);
+    // Effect hook to clear error message when new link is added
+    useEffect(() => {
+        if (error) {
+            setError(null);
+        }
+    }, [newLink]);
 
-    const fetchLinks = (userId) => {
-        const linksRef = ref(database, `users/${userId}/Websitelinks`);
-        onValue(linksRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                const fetchedLinks = Object.keys(data).map((key) => ({
-                    id: key,
-                    ...data[key],
-                }));
-                setLinks(fetchedLinks);
-            } else {
-                setLinks([]);
+    // Fetch user's links from Firebase Realtime Database
+    const fetchLinks = (uid) => {
+        const linksRef = ref(database, `websitelinks/${uid}`);
+        onValue(
+            linksRef,
+            (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    const fetchedLinks = Object.entries(data).map(([key, value]) => ({
+                        id: key,
+                        ...value,
+                    }));
+                    setLinks(fetchedLinks);
+                } else {
+                    setLinks([]);
+                    console.log("No links found for user:", uid);
+                }
+            },
+            (error) => {
+                console.error("Error fetching links:", error);
+                setError("Error fetching links:");
             }
-        });
+        );
     };
 
+    // Handler for adding a new link
     const handleAddLink = (event) => {
         event.preventDefault();
+        setError(null);
         try {
             const url = new URL(newLink);
             const hostname = url.hostname;
@@ -55,26 +68,37 @@ const FavoriteLink = () => {
                 icon: `https://www.google.com/s2/favicons?domain=${newLink}`,
             };
 
-            if (userId) {
-                const linksRef = ref(database, `users/${userId}/Websitelinks`);
+            if (user && user.uid) {
+                const linksRef = ref(database, `websitelinks/${user.uid}`);
                 const newLinkRef = push(linksRef);
-                set(newLinkRef, link);
+                set(newLinkRef, link)
+                    .then(() => {
+                        setNewLink("");
+                        setOpenInput(false);
+                    })
+                    .catch((error) => {
+                        console.error("Error adding link:", error);
+                        setError("Error adding link");
+                    });
             }
-
-            setNewLink("");
         } catch (error) {
-            setError(`Error: ${error.message}`);
+            console.error("Error processing link:", error);
+            setError("Error processing link");
         }
     };
 
-    useEffect(() => {
-        setError(null);
-    }, [newLink]);
-
+    // Handler for removing a link
     const handleRemoveLink = (linkId) => {
-        if (userId) {
-            const linkRef = ref(database, `users/${userId}/Websitelinks/${linkId}`);
-            remove(linkRef);
+        if (user && user.uid) {
+            const linkRef = ref(database, `websitelinks/${user.uid}/${linkId}`);
+            remove(linkRef)
+                .then(() => {
+                    console.log("Link removed successfully");
+                })
+                .catch((error) => {
+                    console.error("Error removing link:", error);
+                    setError("Error removing link:");
+                });
         }
     };
 
@@ -90,10 +114,9 @@ const FavoriteLink = () => {
                             type="text"
                             value={newLink}
                             onChange={(event) => setNewLink(event.target.value)}
-                            placeholder="Enter a link"
+                            placeholder="Enter link URL"
                             className="link-input"
                         />
-
                         <CustomButton
                             className={`add-link-button ${!newLink && "disabled"}`}
                             type="submit"
