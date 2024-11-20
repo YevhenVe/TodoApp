@@ -33,7 +33,7 @@ const LinkInput = () => {
                 className="input-links"
                 value={inputLink}
                 onChange={(e) => setInputLink(e.target.value)}
-                placeholder="Type your text here"
+                placeholder="Enter image URL"
             />
             <CustomButton
                 className={!inputLink && "disabled"}

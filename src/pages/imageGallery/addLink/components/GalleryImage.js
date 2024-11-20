@@ -73,7 +73,7 @@ const GalleryImage = ({ url }) => {
                             "& .MuiTooltip-arrow": {
                                 color: "var(--ios-dark-color)",
                             },
-                            borderRadius: "30px",
+                            borderRadius: "10px",
                             boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.75)",
                         },
                     },
