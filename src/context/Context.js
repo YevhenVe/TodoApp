@@ -12,6 +12,7 @@ export const RemoveConfirmContext = createContext();
 export const ThemeColorContext = createContext();
 export const UserImageContext = createContext();
 export const ImageGallery = createContext();
+export const BlureLevelContext = createContext();
 
 export const ContextProvider = (props) => {
     //UserContext
@@ -99,6 +100,31 @@ export const ContextProvider = (props) => {
     const [inputLink, setInputLink] = useState("");
     const [links, setLinks] = useState([]);
 
+    //Blure level
+    const [blurLevel, setBlurLevel] = useState(30);
+
+    useEffect(() => {
+        if (!user?.uid) return;
+
+        // Link to the database
+        const databaseRef = ref(getDatabase(), `stylechanges/${user.uid}/isBlurLevel`);
+
+        // Listen for changes in the database
+        const unsubscribe = onValue(databaseRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const savedBlurLevel = snapshot.val();
+                setBlurLevel(savedBlurLevel); // Set the saved blur level
+            }
+        });
+
+        // Clear the listener when the component unmounts
+        return () => unsubscribe();
+    }, [user]); // User depends on user.uid
+
+    const handleBlurChange = (e) => {
+        setBlurLevel(e.target.value);
+    };
+
     return (
         <UserContext.Provider value={{ user, setUser, role, setRole, allUsersData, setAllUsersData, showAllUsers, setShowAllUsers }}>
             <BackgroundContext.Provider value={{ images, setImages, deleteImage, progress, setProgress, uploading, setUploading, backgroundImage }}>
@@ -110,7 +136,9 @@ export const ContextProvider = (props) => {
                                     <UserImageContext.Provider
                                         value={{ userImages, setUserImages, deleteUserImage, userProgress, setUserProgress, uploadingUserImage, setUploadingUserImage, uploadedUserImage }}
                                     >
-                                        <ImageGallery.Provider value={{ inputLink, setInputLink, links, setLinks }}>{props.children}</ImageGallery.Provider>
+                                        <ImageGallery.Provider value={{ inputLink, setInputLink, links, setLinks }}>
+                                            <BlureLevelContext.Provider value={{ blurLevel, handleBlurChange }}>{props.children}</BlureLevelContext.Provider>
+                                        </ImageGallery.Provider>
                                     </UserImageContext.Provider>
                                 </ThemeColorContext.Provider>
                             </RemoveConfirmContext.Provider>

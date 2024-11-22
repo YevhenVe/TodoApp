@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import CustomSwitcher from "../customSwitcher/CustomSwitcher";
 import { UserContext, ChangeStyleContext, ThemeColorContext } from "context/Context";
+import BlurAdjuster from "components/blurAdjuster/BlurAdjuster";
 
 const StyleChanger = () => {
     const { user } = useContext(UserContext);
@@ -30,6 +31,7 @@ const StyleChanger = () => {
                 labelOff="Dark theme"
                 labelOn="Light theme"
             />
+            <BlurAdjuster />
             <CustomSwitcher
                 onClick={handleClick}
                 getData={data}
