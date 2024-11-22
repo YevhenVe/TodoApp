@@ -19,6 +19,14 @@ const App = () => {
     const { theme } = useContext(ThemeColorContext);
     return (
         <Router>
+            <ToastContainer
+                autoClose={2000}
+                position="top-center"
+                theme={theme ? "light" : "dark"}
+                closeOnClick
+                pauseOnHover
+                draggable
+            />
             <div
                 className="app-wrapper"
                 style={{
@@ -46,14 +54,6 @@ const App = () => {
                         element={
                             <ProtectedRoute>
                                 <ImageGallery />
-                                <ToastContainer
-                                    autoClose={2000}
-                                    position="top-center"
-                                    theme={theme ? "light" : "dark"}
-                                    closeOnClick
-                                    pauseOnHover
-                                    draggable
-                                />
                             </ProtectedRoute>
                         }
                     />

@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext, ChangeStyleContext } from "context/Context";
+import { UserContext, ChangeStyleContext, BlureLevelContext } from "context/Context";
 import User from "../../components/user/User";
 import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
 import UsersData from "../../components/usersData/UsersData";
-import "./PersonalAccountPage.scss";
 import FavoriteLink from "components/favoriteLink/FavoriteLink";
+import "./PersonalAccountPage.scss";
 
 const PersonalAccountPage = () => {
     const { user } = useContext(UserContext);
+    const { blurLevel } = useContext(BlureLevelContext);
     const { data } = useContext(ChangeStyleContext);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
     const options = { weekday: "long", month: "long", day: "numeric" };
@@ -23,7 +24,12 @@ const PersonalAccountPage = () => {
     }, []);
 
     return (
-        <div className={`account-wrapper ${data && user ? "non-styled" : ""}`}>
+        <div
+            className={`account-wrapper ${data && user ? "non-styled" : ""}`}
+            style={{
+                backdropFilter: data && user ? `blur(0px)` : `blur(${blurLevel}px)`,
+            }}
+        >
             <>
                 {user ? (
                     <>
