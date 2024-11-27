@@ -40,8 +40,8 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            transition: all 300ms ease-in-out;
-            a {
+            transition: all 0.15s cubic-bezier(0.25, 1, 0.5, 1) !important;
+            .favorite-link {
                 display: flex;
                 align-items: center;
                 color: var(--light-text-color);
