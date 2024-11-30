@@ -3,7 +3,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Tooltip } from "@mui/material";
 
 const SortableItem = ({ id, link, onRemove }) => {
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: id });
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: id });
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
@@ -28,28 +28,18 @@ const SortableItem = ({ id, link, onRemove }) => {
                 className="link-item"
                 style={style}
             >
-                {transition ? (
-                    <div className="favorite-link">
-                        <img
-                            src={link.icon}
-                            alt={link.name}
-                        />
-                        {link.name}
-                    </div>
-                ) : (
-                    <a
-                        className="favorite-link"
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img
-                            src={link.icon}
-                            alt={link.name}
-                        />
-                        {link.name}
-                    </a>
-                )}
+                <a
+                    className="favorite-link"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src={link.icon}
+                        alt={link.name}
+                    />
+                    {link.name}
+                </a>
             </div>
         </Tooltip>
     );
