@@ -51,10 +51,15 @@
             padding-top: 30px;
         }
         .time {
-            font-size: calc(60px + 20 * (100vw - 320px) / 880);
+            font-size: calc(30px + 15 * (100vw - 320px) / 880);
             font-weight: 600;
             color: var(--light-text-color);
             line-height: 1;
+        }
+        .date-time-box {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
         }
     }
 }

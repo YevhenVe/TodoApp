@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext, ChangeStyleContext, DdMenuContext, BlureLevelContext } from "context/Context";
 import UserPhoto from "../user/userPhoto/UserPhoto";
+import User from "../../components/user/User";
 import "./Header.scss";
 import Weather from "../weather/Weather";
 
@@ -18,6 +19,7 @@ const Header = () => {
             }}
         >
             <Weather />
+            <User />
             {user ? <UserPhoto onClick={() => setIsMenuClosed(!isMenuClosed)} /> : ""}
         </div>
     );

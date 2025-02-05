@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext, ChangeStyleContext, BlureLevelContext } from "context/Context";
-import User from "../../components/user/User";
+
 import Records from "../../components/records/Records";
 import Auth from "../../components/auth/Auth";
 import UsersData from "../../components/usersData/UsersData";
@@ -36,11 +36,12 @@ const PersonalAccountPage = () => {
                         <UsersData />
                         <div className="fixed-account-content">
                             <div className="time">{currentTime}</div>
-                            <div className="current-date">Today is: {dayOfWeek}</div>
-                            <div className="current-date">
-                                {dateWithoutDay} {new Date().getFullYear()}
+                            <div className="date-time-box">
+                                <div className="current-date">{dayOfWeek}</div>
+                                <div className="current-date">
+                                    {dateWithoutDay} {new Date().getFullYear()}
+                                </div>
                             </div>
-                            <User />
                             <FavoriteLink />
                         </div>
                         <div className="account-content">

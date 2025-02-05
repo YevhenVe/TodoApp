@@ -27,9 +27,9 @@ const UserRole = () => {
         <>
             <CustomSwitcher
                 onClick={handleClick}
-                getData={role}
-                labelOff="Admin"
-                labelOn="User"
+                getData={!role}
+                labelOff="User"
+                labelOn="Admin"
             />
         </>
     );
