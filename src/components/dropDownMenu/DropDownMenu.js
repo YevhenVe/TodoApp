@@ -11,6 +11,7 @@ import UserRole from "../userRole/UserRole";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "./DropDownMenu.scss";
+import { signOut } from "firebase/auth";
 
 const DropDownMenu = ({ className, adClassName, onClick }) => {
     const { user, setRole, role, showAllUsers, setShowAllUsers } = useContext(UserContext);
@@ -65,7 +66,9 @@ const DropDownMenu = ({ className, adClassName, onClick }) => {
                             label="Show all users"
                         />
                     )}
-                    <Signout />
+                    <div className="signout-button">
+                        <Signout />
+                    </div>
                 </div>
             </div>
         </>
