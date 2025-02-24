@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import CustomButton from "components/customButton/CustomButton";
 import { toast } from "react-toastify";
 import SortableItem from "./SortableItem";
@@ -130,6 +130,17 @@ const FavoriteLink = () => {
             });
         }
     };
+    // This is to prevent the default scroll behavior when using the mouse wheel
+    const linksBoxRef = useRef(null);
+    const linksBox = linksBoxRef.current;
+    linksBox?.addEventListener("wheel", (event) => {
+        if (event.deltaY !== 0) {
+            event.preventDefault();
+            linksBox.scrollBy({
+                left: event.deltaY > 0 ? 50 : -50,
+            });
+        }
+    });
 
     return (
         <div className="favorite-link-wrapper">
@@ -157,7 +168,10 @@ const FavoriteLink = () => {
                 </>
             )}
 
-            <div className="links-box">
+            <div
+                className="links-box"
+                ref={linksBoxRef}
+            >
                 <button
                     className="open-add-link-button"
                     onClick={() => setOpenInput(!openInput)}
