@@ -132,15 +132,24 @@ const FavoriteLink = () => {
     };
     // This is to prevent the default scroll behavior when using the mouse wheel
     const linksBoxRef = useRef(null);
-    const linksBox = linksBoxRef.current;
-    linksBox?.addEventListener("wheel", (event) => {
-        if (event.deltaY !== 0) {
-            event.preventDefault();
-            linksBox.scrollBy({
-                left: event.deltaY > 0 ? 50 : -50,
-            });
+    useEffect(() => {
+        const linksBox = linksBoxRef.current;
+        if (linksBox) {
+            const handleWheel = (event) => {
+                if (event.deltaY !== 0) {
+                    event.preventDefault();
+                    linksBox.scrollBy({
+                        left: event.deltaY > 0 ? 50 : -50,
+                    });
+                }
+            };
+            linksBox.addEventListener("wheel", handleWheel);
+            // Clean up the event listener when the component unmounts
+            return () => {
+                linksBox.removeEventListener("wheel", handleWheel);
+            };
         }
-    });
+    }, []);
 
     return (
         <div className="favorite-link-wrapper">
